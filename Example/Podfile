@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'KxUI_Example' do
+  pod 'KxUI', :path => '../'
+
+  target 'KxUI_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
