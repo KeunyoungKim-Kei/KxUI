@@ -21,6 +21,7 @@
 //
 
 public typealias KUAlertReponseHandler = () -> ()
+public typealias AlertInputCompletion = (String?)->()
 
 public extension UIViewController {
     /**
@@ -28,13 +29,40 @@ public extension UIViewController {
      
      - Parameter message: 경고 메시지
      */
-    public func showInfoAlert(message: String) {
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        
-        let action = UIAlertAction(title: NSLocalizedString("확인", comment: "확인"), style: UIAlertActionStyle.default, handler: nil)
-        alert.addAction(action)
-        
-        present(alert, animated: true, completion: nil)
+    open func showInfoAlert(title: String? = nil, message: String, confirmTitle: String = NSLocalizedString("확인", comment: "확인")) {
+        DispatchQueue.main.async { [weak self] in
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            
+            let action = UIAlertAction(title: confirmTitle, style: UIAlertActionStyle.default, handler: nil)
+            alert.addAction(action)
+            
+            self?.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func showPasswordAlert(positiveHandler: AlertInputCompletion?, negativeHandler: AlertInputCompletion?) {
+        DispatchQueue.main.async { [weak self] in
+            let title = NSLocalizedString("비밀번호 확인", comment: "비밀번호 확인")
+            let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+            
+            alert.addTextField(configurationHandler: { (textField) in
+                textField.placeholder = NSLocalizedString("비밀번호를 입력해 주세요.", comment: "비밀번호를 입력해 주세요.")
+            })
+            
+            let confirmAction = UIAlertAction(title: NSLocalizedString("확인", comment: "확인"), style: .default, handler: { action in
+                if let inputField = alert.textFields?.first {
+                    positiveHandler?(inputField.text)
+                }
+            })
+            alert.addAction(confirmAction)
+            
+            let cancelAction = UIAlertAction(title: NSLocalizedString("취소", comment: "취소"), style: .cancel, handler: { action in
+                negativeHandler?(nil)
+            })
+            alert.addAction(cancelAction)
+            
+            self?.present(alert, animated: true, completion: nil)
+        }
     }
     
     /**

@@ -38,7 +38,7 @@ public extension KUCommonViewController {
     
     
     public func register(name: Notification.Name) {
-        NotificationCenter.default.addObserver(self, selector: #selector(KUCommonViewController.handle(notification:)), name: name, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handle(notification:)), name: name, object: nil)
         notificationNames.append(name)
     }
     
