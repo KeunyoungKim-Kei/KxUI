@@ -29,7 +29,7 @@ public extension UIViewController {
      
      - Parameter message: 경고 메시지
      */
-    open func showInfoAlert(title: String? = nil, message: String, confirmTitle: String = NSLocalizedString("확인", comment: "확인")) {
+    public func showInfoAlert(title: String? = nil, message: String, confirmTitle: String = NSLocalizedString("확인", comment: "확인")) {
         DispatchQueue.main.async { [weak self] in
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
             
@@ -40,7 +40,7 @@ public extension UIViewController {
         }
     }
     
-    func showPasswordAlert(positiveHandler: AlertInputCompletion?, negativeHandler: AlertInputCompletion?) {
+    public func showPasswordAlert(positiveHandler: AlertInputCompletion?, negativeHandler: AlertInputCompletion?) {
         DispatchQueue.main.async { [weak self] in
             let title = NSLocalizedString("비밀번호 확인", comment: "비밀번호 확인")
             let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
