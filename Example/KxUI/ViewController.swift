@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import KxUI
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        view.backgroundColor = UIColor.Apple.tealBlue
     }
 
     override func didReceiveMemoryWarning() {

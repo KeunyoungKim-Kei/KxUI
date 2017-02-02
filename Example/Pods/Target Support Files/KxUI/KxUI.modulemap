@@ -1,0 +1,6 @@
+framework module KxUI {
+  umbrella header "KxUI-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,16 @@
+PODS:
+  - KxUI (0.1.0)
+
+DEPENDENCIES:
+  - KxUI (from `../`)
+
+EXTERNAL SOURCES:
+  KxUI:
+    :path: ../
+
+SPEC CHECKSUMS:
+  KxUI: ec3bd18fc68e1380681ed91c4a2da0156712ea68
+
+PODFILE CHECKSUM: 3c7cc176e0dd3d533e17efcdfae5fedb54fca099
+
+COCOAPODS: 1.1.1

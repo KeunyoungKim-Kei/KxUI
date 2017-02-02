@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A47C7C71E094075004E87B7 /* ColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A47C7C51E094069004E87B7 /* ColorTests.swift */; };
+		1A47C7CB1E099649004E87B7 /* ColorListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A47C7CA1E099649004E87B7 /* ColorListTableViewCell.swift */; };
+		1A47C7CE1E099670004E87B7 /* ColorItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A47C7CD1E099670004E87B7 /* ColorItem.swift */; };
+		1A47C7D01E099794004E87B7 /* ColorListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A47C7CF1E099794004E87B7 /* ColorListTableViewController.swift */; };
+		1A47C7D21E0997BE004E87B7 /* ColorDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A47C7D11E0997BE004E87B7 /* ColorDataSource.swift */; };
 		2B5B3E739D28B638484AA520 /* Pods_KxUI_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C76251932AF7FE42439580C1 /* Pods_KxUI_Tests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
@@ -28,11 +33,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A47C7C51E094069004E87B7 /* ColorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorTests.swift; sourceTree = "<group>"; };
+		1A47C7CA1E099649004E87B7 /* ColorListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorListTableViewCell.swift; sourceTree = "<group>"; };
+		1A47C7CD1E099670004E87B7 /* ColorItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorItem.swift; sourceTree = "<group>"; };
+		1A47C7CF1E099794004E87B7 /* ColorListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorListTableViewController.swift; sourceTree = "<group>"; };
+		1A47C7D11E0997BE004E87B7 /* ColorDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorDataSource.swift; sourceTree = "<group>"; };
 		2F0ADDF0603C0214C6353C48 /* Pods-KxUI_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KxUI_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-KxUI_Example/Pods-KxUI_Example.release.xcconfig"; sourceTree = "<group>"; };
 		325FE44B3E89B8B0954DE10D /* Pods-KxUI_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KxUI_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KxUI_Tests/Pods-KxUI_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		32EB27003837D5BDEC905C89 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		32EB27003837D5BDEC905C89 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		3562DA59CB8586D835B6E4B3 /* Pods_KxUI_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KxUI_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		41C871C54AD4455053954FE7 /* KxUI.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = KxUI.podspec; path = ../KxUI.podspec; sourceTree = "<group>"; };
+		41C871C54AD4455053954FE7 /* KxUI.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = KxUI.podspec; path = ../KxUI.podspec; sourceTree = "<group>"; };
 		4D3F0E92E7839A8A8A014F39 /* Pods-KxUI_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KxUI_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KxUI_Example/Pods-KxUI_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* KxUI_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KxUI_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -46,7 +56,7 @@
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		C76251932AF7FE42439580C1 /* Pods_KxUI_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KxUI_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C76DC61F9231DA0F25A42E54 /* Pods-KxUI_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KxUI_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KxUI_Tests/Pods-KxUI_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		CF3E9E8AE91FFFC834DF66EE /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		CF3E9E8AE91FFFC834DF66EE /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +79,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A47C7C81E099335004E87B7 /* Color */ = {
+			isa = PBXGroup;
+			children = (
+				1A47C7CC1E09965A004E87B7 /* Model */,
+				1A47C7C91E099628004E87B7 /* Cell */,
+				1A47C7CF1E099794004E87B7 /* ColorListTableViewController.swift */,
+			);
+			path = Color;
+			sourceTree = "<group>";
+		};
+		1A47C7C91E099628004E87B7 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				1A47C7CA1E099649004E87B7 /* ColorListTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		1A47C7CC1E09965A004E87B7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1A47C7CD1E099670004E87B7 /* ColorItem.swift */,
+				1A47C7D11E0997BE004E87B7 /* ColorDataSource.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +130,7 @@
 		607FACD21AFB9204008FA782 /* Example for KxUI */ = {
 			isa = PBXGroup;
 			children = (
+				1A47C7C81E099335004E87B7 /* Color */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -116,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				607FACEB1AFB9204008FA782 /* Tests.swift */,
+				1A47C7C51E094069004E87B7 /* ColorTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -210,14 +249,18 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 6GG6YUX8VB;
+						LastSwiftMigration = 0820;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 6GG6YUX8VB;
+						LastSwiftMigration = 0820;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
 				};
@@ -359,6 +402,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A47C7CE1E099670004E87B7 /* ColorItem.swift in Sources */,
+				1A47C7D01E099794004E87B7 /* ColorListTableViewController.swift in Sources */,
+				1A47C7D21E0997BE004E87B7 /* ColorDataSource.swift in Sources */,
+				1A47C7CB1E099649004E87B7 /* ColorListTableViewCell.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
@@ -369,6 +416,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				1A47C7C71E094075004E87B7 /* ColorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,8 +463,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -460,8 +510,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -480,6 +532,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -488,12 +541,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4D3F0E92E7839A8A8A014F39 /* Pods-KxUI_Example.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6GG6YUX8VB;
 				INFOPLIST_FILE = KxUI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -501,12 +557,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2F0ADDF0603C0214C6353C48 /* Pods-KxUI_Example.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6GG6YUX8VB;
 				INFOPLIST_FILE = KxUI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -514,6 +573,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C76DC61F9231DA0F25A42E54 /* Pods-KxUI_Tests.debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 6GG6YUX8VB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -526,6 +586,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KxUI_Example.app/KxUI_Example";
 			};
 			name = Debug;
 		};
@@ -533,6 +595,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 325FE44B3E89B8B0954DE10D /* Pods-KxUI_Tests.release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 6GG6YUX8VB;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -541,6 +604,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KxUI_Example.app/KxUI_Example";
 			};
 			name = Release;
 		};
