@@ -32,6 +32,7 @@
 		1A377CC91E0821B300204619 /* String+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A377CC81E0821B300204619 /* String+Color.swift */; };
 		1A377CCB1E0821E000204619 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A377CCA1E0821E000204619 /* UIColor+Hex.swift */; };
 		1A377CCD1E0821FB00204619 /* UIColor+Predefined.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A377CCC1E0821FB00204619 /* UIColor+Predefined.swift */; };
+		1A91137C1E495DEA0027D330 /* UIText+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91137B1E495DEA0027D330 /* UIText+Validation.swift */; };
 		1AB452FE1E09A064006D3792 /* UIColor+RGB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB452FD1E09A064006D3792 /* UIColor+RGB.swift */; };
 		1AEFFFA31E3DC82A00004A06 /* UIView+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEFFFA21E3DC82A00004A06 /* UIView+Validation.swift */; };
 		308C7B5890D1DF370A4FF705DB6DCFFB /* Pods-KxUI_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6069F09BC5DEDDD15912BF534ED32881 /* Pods-KxUI_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -78,6 +79,7 @@
 		1A377CC81E0821B300204619 /* String+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Color.swift"; sourceTree = "<group>"; };
 		1A377CCA1E0821E000204619 /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		1A377CCC1E0821FB00204619 /* UIColor+Predefined.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Predefined.swift"; sourceTree = "<group>"; };
+		1A91137B1E495DEA0027D330 /* UIText+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIText+Validation.swift"; sourceTree = "<group>"; };
 		1AB452FD1E09A064006D3792 /* UIColor+RGB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+RGB.swift"; sourceTree = "<group>"; };
 		1AEFFFA21E3DC82A00004A06 /* UIView+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Validation.swift"; sourceTree = "<group>"; };
 		1B1691C6EA50958905B36A8BBE08D471 /* KxUI-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KxUI-umbrella.h"; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 			children = (
 				1A1938B01E07C60700CC3929 /* UIView+Util.swift */,
 				1AEFFFA21E3DC82A00004A06 /* UIView+Validation.swift */,
+				1A91137B1E495DEA0027D330 /* UIText+Validation.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -536,6 +539,7 @@
 				1A1938AC1E07C21000CC3929 /* View+IndexPaths.swift in Sources */,
 				1A1938DF1E07EF9100CC3929 /* KUDataSource.swift in Sources */,
 				1A1938AA1E07C1A500CC3929 /* CGFloat+Dimension.swift in Sources */,
+				1A91137C1E495DEA0027D330 /* UIText+Validation.swift in Sources */,
 				1A1938D61E07EAC500CC3929 /* UIViewController+Alert.swift in Sources */,
 				1A1938C41E07D0CB00CC3929 /* KUCommonViewController.swift in Sources */,
 				1A1938B31E07C69500CC3929 /* KURoundView.swift in Sources */,
