@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		04862A05C2AE1D84E4EA887E6FCD4EDD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
 		0A08692C497E51726650343BF8C9A6B8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		1A054F171E4A9194005D2E4A /* SegueNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A054F161E4A9194005D2E4A /* SegueNames.swift */; };
 		1A1938A81E07C11500CC3929 /* KUUserDefaultsSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1938A71E07C11500CC3929 /* KUUserDefaultsSwitch.swift */; };
 		1A1938AA1E07C1A500CC3929 /* CGFloat+Dimension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1938A91E07C1A500CC3929 /* CGFloat+Dimension.swift */; };
 		1A1938AC1E07C21000CC3929 /* View+IndexPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1938AB1E07C21000CC3929 /* View+IndexPaths.swift */; };
@@ -33,6 +34,7 @@
 		1A377CCB1E0821E000204619 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A377CCA1E0821E000204619 /* UIColor+Hex.swift */; };
 		1A377CCD1E0821FB00204619 /* UIColor+Predefined.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A377CCC1E0821FB00204619 /* UIColor+Predefined.swift */; };
 		1AB452FE1E09A064006D3792 /* UIColor+RGB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB452FD1E09A064006D3792 /* UIColor+RGB.swift */; };
+		1AD318201E4EF61D00B9664B /* ReplaceRootVCSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3181F1E4EF61D00B9664B /* ReplaceRootVCSegue.swift */; };
 		1AEFFFA31E3DC82A00004A06 /* UIView+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEFFFA21E3DC82A00004A06 /* UIView+Validation.swift */; };
 		308C7B5890D1DF370A4FF705DB6DCFFB /* Pods-KxUI_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6069F09BC5DEDDD15912BF534ED32881 /* Pods-KxUI_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5841CA2907E0F5D0FBF23A504E4F8E06 /* Pods-KxUI_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 241E6419A6FCEA1B10F618B9E3F3B790 /* Pods-KxUI_Example-dummy.m */; };
@@ -55,6 +57,7 @@
 
 /* Begin PBXFileReference section */
 		050370EDF4ED3ECC343B6123DAC4F7D5 /* Pods-KxUI_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-KxUI_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		1A054F161E4A9194005D2E4A /* SegueNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueNames.swift; sourceTree = "<group>"; };
 		1A1938A71E07C11500CC3929 /* KUUserDefaultsSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KUUserDefaultsSwitch.swift; sourceTree = "<group>"; };
 		1A1938A91E07C1A500CC3929 /* CGFloat+Dimension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Dimension.swift"; sourceTree = "<group>"; };
 		1A1938AB1E07C21000CC3929 /* View+IndexPaths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+IndexPaths.swift"; sourceTree = "<group>"; };
@@ -79,6 +82,7 @@
 		1A377CCA1E0821E000204619 /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		1A377CCC1E0821FB00204619 /* UIColor+Predefined.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Predefined.swift"; sourceTree = "<group>"; };
 		1AB452FD1E09A064006D3792 /* UIColor+RGB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+RGB.swift"; sourceTree = "<group>"; };
+		1AD3181F1E4EF61D00B9664B /* ReplaceRootVCSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplaceRootVCSegue.swift; sourceTree = "<group>"; };
 		1AEFFFA21E3DC82A00004A06 /* UIView+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Validation.swift"; sourceTree = "<group>"; };
 		1B1691C6EA50958905B36A8BBE08D471 /* KxUI-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KxUI-umbrella.h"; sourceTree = "<group>"; };
 		1CADF2EE3ADA67A4CB91D6B7DA73DE82 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -176,6 +180,15 @@
 				D1D4243D6F9E292B1F64FEC59EAA2C20 /* Pods_KxUI_Tests.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		1A054F151E4A918A005D2E4A /* Segue */ = {
+			isa = PBXGroup;
+			children = (
+				1A054F161E4A9194005D2E4A /* SegueNames.swift */,
+				1AD3181F1E4EF61D00B9664B /* ReplaceRootVCSegue.swift */,
+			);
+			path = Segue;
 			sourceTree = "<group>";
 		};
 		1A1938A51E07C0CC00CC3929 /* View */ = {
@@ -380,6 +393,7 @@
 		EB8AE2F60DBB1EC57E8851B1DA0E5FFB /* KxUI */ = {
 			isa = PBXGroup;
 			children = (
+				1A054F151E4A918A005D2E4A /* Segue */,
 				1A377CC71E0821A300204619 /* Color */,
 				1A1938D71E07ED6700CC3929 /* TableView */,
 				1A1938C21E07CFDA00CC3929 /* ViewController */,
@@ -526,6 +540,7 @@
 				1A377CCB1E0821E000204619 /* UIColor+Hex.swift in Sources */,
 				1A1938CA1E07D16E00CC3929 /* KUVC+Snapshot.swift in Sources */,
 				73AE849D940A47D98A4999F2129E477F /* KxUI-dummy.m in Sources */,
+				1A054F171E4A9194005D2E4A /* SegueNames.swift in Sources */,
 				1A1938B91E07CE0200CC3929 /* KURoundImageView.swift in Sources */,
 				1AB452FE1E09A064006D3792 /* UIColor+RGB.swift in Sources */,
 				1A1938B61E07CD7000CC3929 /* KURoundButton.swift in Sources */,
@@ -545,6 +560,7 @@
 				1A377CC91E0821B300204619 /* String+Color.swift in Sources */,
 				1A1938BE1E07CEDC00CC3929 /* UILabel+Text.swift in Sources */,
 				1AEFFFA31E3DC82A00004A06 /* UIView+Validation.swift in Sources */,
+				1AD318201E4EF61D00B9664B /* ReplaceRootVCSegue.swift in Sources */,
 				1A1938C81E07D13B00CC3929 /* KUVC+Responder.swift in Sources */,
 				1A1938C11E07CFB300CC3929 /* KUPaddingTextField.swift in Sources */,
 			);
