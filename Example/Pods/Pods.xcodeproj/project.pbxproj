@@ -10,6 +10,10 @@
 		04862A05C2AE1D84E4EA887E6FCD4EDD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
 		0A08692C497E51726650343BF8C9A6B8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
 		1A054F171E4A9194005D2E4A /* SegueNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A054F161E4A9194005D2E4A /* SegueNames.swift */; };
+		1A142A1E1E502400006521A0 /* UIImage+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A142A1D1E502400006521A0 /* UIImage+Color.swift */; };
+		1A142A201E50252F006521A0 /* KUColoredButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A142A1F1E50252F006521A0 /* KUColoredButton.swift */; };
+		1A142A221E502D15006521A0 /* KUUnderlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A142A211E502D15006521A0 /* KUUnderlineView.swift */; };
+		1A142A241E503AAA006521A0 /* KURadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A142A231E503AAA006521A0 /* KURadioButton.swift */; };
 		1A1938A81E07C11500CC3929 /* KUUserDefaultsSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1938A71E07C11500CC3929 /* KUUserDefaultsSwitch.swift */; };
 		1A1938AA1E07C1A500CC3929 /* CGFloat+Dimension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1938A91E07C1A500CC3929 /* CGFloat+Dimension.swift */; };
 		1A1938AC1E07C21000CC3929 /* View+IndexPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1938AB1E07C21000CC3929 /* View+IndexPaths.swift */; };
@@ -35,6 +39,8 @@
 		1A377CCD1E0821FB00204619 /* UIColor+Predefined.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A377CCC1E0821FB00204619 /* UIColor+Predefined.swift */; };
 		1AB452FE1E09A064006D3792 /* UIColor+RGB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB452FD1E09A064006D3792 /* UIColor+RGB.swift */; };
 		1AD318201E4EF61D00B9664B /* ReplaceRootVCSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD3181F1E4EF61D00B9664B /* ReplaceRootVCSegue.swift */; };
+		1AD318231E4EFA7800B9664B /* KUHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD318221E4EFA7800B9664B /* KUHeaderView.swift */; };
+		1AD318251E4F001200B9664B /* KUHeaderBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD318241E4F001200B9664B /* KUHeaderBaseView.swift */; };
 		1AEFFFA31E3DC82A00004A06 /* UIView+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEFFFA21E3DC82A00004A06 /* UIView+Validation.swift */; };
 		308C7B5890D1DF370A4FF705DB6DCFFB /* Pods-KxUI_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6069F09BC5DEDDD15912BF534ED32881 /* Pods-KxUI_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5841CA2907E0F5D0FBF23A504E4F8E06 /* Pods-KxUI_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 241E6419A6FCEA1B10F618B9E3F3B790 /* Pods-KxUI_Example-dummy.m */; };
@@ -58,6 +64,10 @@
 /* Begin PBXFileReference section */
 		050370EDF4ED3ECC343B6123DAC4F7D5 /* Pods-KxUI_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-KxUI_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		1A054F161E4A9194005D2E4A /* SegueNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueNames.swift; sourceTree = "<group>"; };
+		1A142A1D1E502400006521A0 /* UIImage+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Color.swift"; sourceTree = "<group>"; };
+		1A142A1F1E50252F006521A0 /* KUColoredButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KUColoredButton.swift; sourceTree = "<group>"; };
+		1A142A211E502D15006521A0 /* KUUnderlineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KUUnderlineView.swift; sourceTree = "<group>"; };
+		1A142A231E503AAA006521A0 /* KURadioButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KURadioButton.swift; sourceTree = "<group>"; };
 		1A1938A71E07C11500CC3929 /* KUUserDefaultsSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KUUserDefaultsSwitch.swift; sourceTree = "<group>"; };
 		1A1938A91E07C1A500CC3929 /* CGFloat+Dimension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Dimension.swift"; sourceTree = "<group>"; };
 		1A1938AB1E07C21000CC3929 /* View+IndexPaths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+IndexPaths.swift"; sourceTree = "<group>"; };
@@ -83,6 +93,8 @@
 		1A377CCC1E0821FB00204619 /* UIColor+Predefined.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Predefined.swift"; sourceTree = "<group>"; };
 		1AB452FD1E09A064006D3792 /* UIColor+RGB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+RGB.swift"; sourceTree = "<group>"; };
 		1AD3181F1E4EF61D00B9664B /* ReplaceRootVCSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplaceRootVCSegue.swift; sourceTree = "<group>"; };
+		1AD318221E4EFA7800B9664B /* KUHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KUHeaderView.swift; sourceTree = "<group>"; };
+		1AD318241E4F001200B9664B /* KUHeaderBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KUHeaderBaseView.swift; sourceTree = "<group>"; };
 		1AEFFFA21E3DC82A00004A06 /* UIView+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Validation.swift"; sourceTree = "<group>"; };
 		1B1691C6EA50958905B36A8BBE08D471 /* KxUI-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KxUI-umbrella.h"; sourceTree = "<group>"; };
 		1CADF2EE3ADA67A4CB91D6B7DA73DE82 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -191,9 +203,18 @@
 			path = Segue;
 			sourceTree = "<group>";
 		};
+		1A142A1C1E5023EB006521A0 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				1A142A1D1E502400006521A0 /* UIImage+Color.swift */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
 		1A1938A51E07C0CC00CC3929 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1AD318211E4EFA6300B9664B /* Header */,
 				1A1938BF1E07CFA700CC3929 /* TextField */,
 				1A1938BA1E07CE7500CC3929 /* Label */,
 				1A1938B71E07CDF200CC3929 /* ImageView */,
@@ -203,6 +224,7 @@
 				1A1938AB1E07C21000CC3929 /* View+IndexPaths.swift */,
 				1A1938AD1E07C5B900CC3929 /* KUCircleView.swift */,
 				1A1938B21E07C69500CC3929 /* KURoundView.swift */,
+				1A142A211E502D15006521A0 /* KUUnderlineView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -228,6 +250,8 @@
 			isa = PBXGroup;
 			children = (
 				1A1938B51E07CD7000CC3929 /* KURoundButton.swift */,
+				1A142A1F1E50252F006521A0 /* KUColoredButton.swift */,
+				1A142A231E503AAA006521A0 /* KURadioButton.swift */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -323,6 +347,15 @@
 			path = Color;
 			sourceTree = "<group>";
 		};
+		1AD318211E4EFA6300B9664B /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				1AD318241E4F001200B9664B /* KUHeaderBaseView.swift */,
+				1AD318221E4EFA7800B9664B /* KUHeaderView.swift */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
 		3B1D117342D53BDB220573E7D7C63F2C /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -393,6 +426,7 @@
 		EB8AE2F60DBB1EC57E8851B1DA0E5FFB /* KxUI */ = {
 			isa = PBXGroup;
 			children = (
+				1A142A1C1E5023EB006521A0 /* Image */,
 				1A054F151E4A918A005D2E4A /* Segue */,
 				1A377CC71E0821A300204619 /* Color */,
 				1A1938D71E07ED6700CC3929 /* TableView */,
@@ -535,6 +569,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A142A1E1E502400006521A0 /* UIImage+Color.swift in Sources */,
 				1A1938A81E07C11500CC3929 /* KUUserDefaultsSwitch.swift in Sources */,
 				1A1938C61E07D10D00CC3929 /* KUVC+Notification.swift in Sources */,
 				1A377CCB1E0821E000204619 /* UIColor+Hex.swift in Sources */,
@@ -551,8 +586,12 @@
 				1A1938AC1E07C21000CC3929 /* View+IndexPaths.swift in Sources */,
 				1A1938DF1E07EF9100CC3929 /* KUDataSource.swift in Sources */,
 				1A1938AA1E07C1A500CC3929 /* CGFloat+Dimension.swift in Sources */,
+				1A142A241E503AAA006521A0 /* KURadioButton.swift in Sources */,
+				1AD318231E4EFA7800B9664B /* KUHeaderView.swift in Sources */,
 				1A1938D61E07EAC500CC3929 /* UIViewController+Alert.swift in Sources */,
 				1A1938C41E07D0CB00CC3929 /* KUCommonViewController.swift in Sources */,
+				1A142A201E50252F006521A0 /* KUColoredButton.swift in Sources */,
+				1A142A221E502D15006521A0 /* KUUnderlineView.swift in Sources */,
 				1A1938B31E07C69500CC3929 /* KURoundView.swift in Sources */,
 				1A1938BC1E07CE8500CC3929 /* KUUnderlineLabel.swift in Sources */,
 				1A1938B11E07C60700CC3929 /* UIView+Util.swift in Sources */,
@@ -562,6 +601,7 @@
 				1AEFFFA31E3DC82A00004A06 /* UIView+Validation.swift in Sources */,
 				1AD318201E4EF61D00B9664B /* ReplaceRootVCSegue.swift in Sources */,
 				1A1938C81E07D13B00CC3929 /* KUVC+Responder.swift in Sources */,
+				1AD318251E4F001200B9664B /* KUHeaderBaseView.swift in Sources */,
 				1A1938C11E07CFB300CC3929 /* KUPaddingTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

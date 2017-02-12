@@ -20,51 +20,35 @@
 //  THE SOFTWARE.
 //
 
+import UIKit
 
-@IBDesignable open class KUPaddingTextField: UITextField {
-    @IBInspectable open var leftPadding: CGFloat = 20 {
+@IBDesignable open class KUColoredButton: KURoundButton {
+
+    @IBInspectable
+    open var buttonColor: UIColor = UIColor.Apple.blue {
         didSet {
-            setup()
+            setupView()
         }
     }
     
-    
-    
-    @IBInspectable open var rightPadding: CGFloat = 20 {
+    @IBInspectable
+    open var highlightedColor: UIColor?  {
         didSet {
-            setup()
+            setupView()
         }
     }
     
-    
-    
-    @IBInspectable open var cornerRadius: CGFloat = 0 {
-        didSet {
-            layer.cornerRadius = cornerRadius
-            clipsToBounds = true
-        }
-    }
-    
-    
-    
-    func setup() {
-        let height = bounds.height
-        leftView = UIView(frame: CGRect(x: 0, y: 0, width: leftPadding, height: height))
-        leftViewMode = UITextFieldViewMode.always
+    override func setupView() {
+        super.setupView()
         
-        rightView = UIView(frame: CGRect(x: 0, y: 0, width: rightPadding, height: height))
-        rightViewMode = UITextFieldViewMode.always
+        if let backgroundImage = UIImage.from(color: buttonColor) {
+            setBackgroundImage(backgroundImage, for: .normal)
+        }
         
-        layer.cornerRadius = cornerRadius
-        clipsToBounds = true
+        setBackgroundImage(nil, for: .highlighted)
+        if let color = highlightedColor, let img = UIImage.from(color: color) {
+            setBackgroundImage(img, for: .highlighted)
+        }
     }
-    
-    
-    open override func prepareForInterfaceBuilder() {
-        setup()
-    }
-    
-    open override func awakeFromNib() {
-        setup()
-    }
+
 }

@@ -27,8 +27,6 @@
         }
     }
     
-    
-    
     @IBInspectable open var borderWidth: CGFloat = 0 {
         didSet {
             setupView()
@@ -45,27 +43,19 @@
     
     
     
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupView()
-    }
-    
-    
-    
-    required public init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)!
-        setupView()
-    }
-    
-    
     open override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        
+        setupView()
+    }
+    
+    open override func awakeFromNib() {
         setupView()
     }
     
     
     func setupView() {
+        clipsToBounds = true
         apply(cornerRadius: cornerRadius, borderWidth: borderWidth, borderColor: borderColor, clipsToBounds: true)
     }
+    
+    
 }

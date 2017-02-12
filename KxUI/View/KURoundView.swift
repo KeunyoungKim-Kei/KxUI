@@ -45,22 +45,11 @@
     
     
     
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupView()
-    }
-    
-    
-    
-    required public init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)!
-        setupView()
-    }
-    
-    
     open override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        
+        setupView()
+    }
+    
+    open override func awakeFromNib() {
         setupView()
     }
     

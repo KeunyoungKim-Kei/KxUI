@@ -20,51 +20,49 @@
 //  THE SOFTWARE.
 //
 
+import UIKit
 
-@IBDesignable open class KUPaddingTextField: UITextField {
-    @IBInspectable open var leftPadding: CGFloat = 20 {
+@IBDesignable open class KURadioButton: KURoundButton {
+
+    @IBInspectable
+    open var showInnerCircle: Bool = true {
         didSet {
-            setup()
+            updateAttributes()
         }
     }
     
-    
-    
-    @IBInspectable open var rightPadding: CGFloat = 20 {
+    @IBInspectable
+    open var innerCircleRadius: CGFloat = 10 {
         didSet {
-            setup()
+            updateAttributes()
         }
     }
     
+    var innerCircleWidthContraint: NSLayoutConstraint?
+    var innerCircleHeightContraint: NSLayoutConstraint?
     
-    
-    @IBInspectable open var cornerRadius: CGFloat = 0 {
-        didSet {
-            layer.cornerRadius = cornerRadius
-            clipsToBounds = true
-        }
-    }
-    
-    
-    
-    func setup() {
-        let height = bounds.height
-        leftView = UIView(frame: CGRect(x: 0, y: 0, width: leftPadding, height: height))
-        leftViewMode = UITextFieldViewMode.always
+    func updateAttributes() {
+        apply(cornerRadius: bounds.width / 2.0, borderWidth: borderWidth, borderColor: borderColor, clipsToBounds: true)
         
-        rightView = UIView(frame: CGRect(x: 0, y: 0, width: rightPadding, height: height))
-        rightViewMode = UITextFieldViewMode.always
+        if showInnerCircle {
+            if let image = UIImage.from(color: borderColor, radius: innerCircleRadius) {
+                setImage(image, for: .normal)
+            }
+        } else {
+            setImage(nil, for: .normal)
+        }
         
-        layer.cornerRadius = cornerRadius
-        clipsToBounds = true
+        setNeedsDisplay()
     }
     
-    
-    open override func prepareForInterfaceBuilder() {
-        setup()
-    }
-    
-    open override func awakeFromNib() {
-        setup()
+    override func setupView() {
+        super.setupView()
+        
+        setTitle(nil, for: .normal)
+        setImage(nil, for: .normal)
+        
+        
+        
+        updateAttributes()
     }
 }
