@@ -362,6 +362,7 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="bottomLineHeight">
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="excludeStatusBarArea" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>

@@ -26,7 +26,7 @@
 open class KUTableViewCell<T>: UITableViewCell {
     
     /// 셀 고정 높이
-    open var cellHeight: CGFloat {
+    open class var cellHeight: CGFloat {
         return UITableViewAutomaticDimension
     }
     

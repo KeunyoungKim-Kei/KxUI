@@ -40,6 +40,8 @@ open class KUHeaderBaseView: KUUnderlineView {
         v.translatesAutoresizingMaskIntoConstraints = false
         v.clipsToBounds = false
         v.backgroundColor = self.backgroundColor
+        v.backgroundColor = UIColor.red
+        
         
         return v
     }()
@@ -71,6 +73,13 @@ open class KUHeaderBaseView: KUUnderlineView {
         }
     }
     
+    @IBInspectable
+    open var excludeStatusBarArea: Bool = true {
+        didSet {
+            setup()
+        }
+    }
+    
     private var leftContainerWidthConstraint: NSLayoutConstraint?
     
     private var rightContainerWidthConstraint: NSLayoutConstraint?
@@ -86,16 +95,18 @@ open class KUHeaderBaseView: KUUnderlineView {
         addSubview(rightContainerView)
         addSubview(centerContainerView)
         
+        let metrics = ["top": excludeStatusBarArea ? UIApplication.shared.statusBarFrame.height : 0.0]
+        
         var horzConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|[leftContainerView][centerContainerView][rightContainerView]|", options: [], metrics: nil, views: views)
         addConstraints(horzConstraints)
         
-        var vertConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|[leftContainerView]|", options: [], metrics: nil, views: views)
+        var vertConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-top-[leftContainerView]|", options: [], metrics: metrics, views: views)
         addConstraints(vertConstraints)
         
-        vertConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|[rightContainerView]|", options: [], metrics: nil, views: views)
+        vertConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-top-[rightContainerView]|", options: [], metrics: metrics, views: views)
         addConstraints(vertConstraints)
         
-        vertConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|[centerContainerView]|", options: [], metrics: nil, views: views)
+        vertConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-top-[centerContainerView]|", options: [], metrics: metrics, views: views)
         addConstraints(vertConstraints)
         
         leftContainerWidthConstraint = NSLayoutConstraint(item: leftContainerView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: leftContainerWidth)
