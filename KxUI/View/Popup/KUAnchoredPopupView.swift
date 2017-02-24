@@ -98,24 +98,42 @@ import UIKit
         super.init(coder: aDecoder)
     }
     
-    open func show(in view: UIView, anchor: UIView) {
+    open var anchorView: UIView?
+    
+    open func show(in view: UIView, anchor: UIView, centerOffset: CGFloat = 0.0, topMargin: CGFloat = 0.0) {
+        defer {
+            for index in 0..<KUAnchoredPopupView.list.count - 1 {
+                KUAnchoredPopupView.list[index].dismiss()
+            }
+            
+            UIApplication.shared.endIgnoringInteractionEvents()
+        }
+        
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        
+        for v in KUAnchoredPopupView.list {
+            if v.anchorView == .some(anchor) {
+                return
+            }
+        }
+        
+        anchorView = anchor
+        
         self.alpha = 0.0
         view.addSubview(self)
         
         let views = ["popup": self, "anchor": anchor]
-        let centerX = NSLayoutConstraint(item: self, attribute: .centerX, relatedBy: .equal, toItem: anchor, attribute: .centerX, multiplier: 1.0, constant: 0.0)
+        let centerX = NSLayoutConstraint(item: self, attribute: .centerX, relatedBy: .equal, toItem: anchor, attribute: .centerX, multiplier: 1.0, constant: centerOffset)
         view.addConstraint(centerX)
         
-        let top = NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: anchor, attribute: .bottom, multiplier: 1.0, constant: 0.0)
+        let top = NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: anchor, attribute: .bottom, multiplier: 1.0, constant: topMargin)
         view.addConstraint(top)
         
         UIView.animate(withDuration: 0.3) { [weak self] in
             self?.alpha = 1.0
         }
         
-        if KUAnchoredPopupView.list.count > 1 {
-            KUAnchoredPopupView.list.first?.dismiss()
-        }
+        
     }
     
     open static func dismissAll(animated: Bool = true) {
