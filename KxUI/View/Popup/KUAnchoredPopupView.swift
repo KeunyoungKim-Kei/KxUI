@@ -26,7 +26,7 @@ import UIKit
 @IBDesignable open class KUAnchoredPopupView: UIView {
     static var list = [KUAnchoredPopupView]()
     
-    @IBInspectable open var cornerRadius: CGFloat = 6 {
+    @IBInspectable open var cornerRadius: CGFloat = 2 {
         didSet {
             setupView()
         }
@@ -40,7 +40,7 @@ import UIKit
     }
     
     
-    @IBInspectable open var anchorHeight: CGFloat = 14  {
+    @IBInspectable open var anchorHeight: CGFloat = 6  {
         didSet {
             setupView()
         }
@@ -49,22 +49,18 @@ import UIKit
     @IBInspectable open var text: String? {
         didSet {
             label.text = text
-            invalidateIntrinsicContentSize()
-            updateConstraintsIfNeeded()
         }
     }
     
     @IBInspectable open var fontSize: CGFloat = 10 {
         didSet {
             label.font = UIFont.systemFont(ofSize: fontSize)
-            invalidateIntrinsicContentSize()
-            updateConstraintsIfNeeded()
         }
     }
     
     @IBInspectable open var popupColor: UIColor = UIColor.red {
         didSet {
-            setupView()
+            subviews.map { $0.backgroundColor = popupColor }
         }
     }
     
@@ -74,7 +70,7 @@ import UIKit
         }
     }
     
-    @IBInspectable open var insets: UIEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15) {
+    @IBInspectable open var insets: UIEdgeInsets = UIEdgeInsets(top: 3, left: 6, bottom: 3, right: 6) {
         didSet {
             setupView()
         }
@@ -88,12 +84,14 @@ import UIKit
     
     open override func awakeFromNib() {
         setupView()
+        KUAnchoredPopupView.list.append(self)
     }
     
     override public init(frame: CGRect = CGRect.zero) {
         super.init(frame: frame)
         
         setupView()
+        KUAnchoredPopupView.list.append(self)
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -138,9 +136,8 @@ import UIKit
                 self?.alpha = 0.0
             }) { [weak self] (finished) in
                 self?.removeFromSuperview()
+                KUAnchoredPopupView.list.remove(at: index)
             }
-            
-            KUAnchoredPopupView.list.remove(at: index)
         }
     }
     
@@ -171,14 +168,17 @@ import UIKit
         label.translatesAutoresizingMaskIntoConstraints = false
         label.setContentCompressionResistancePriority(1000, for: .horizontal)
         label.setContentCompressionResistancePriority(1000, for: .vertical)
+        label.setContentHuggingPriority(1000, for: .horizontal)
+        label.setContentHuggingPriority(1000, for: .vertical)
         label.lineBreakMode = .byWordWrapping
-        label.numberOfLines = 0
+        label.numberOfLines = 1
         label.textAlignment = .center
         label.textColor = textColor
         label.preferredMaxLayoutWidth = UIScreen.main.bounds.size.width - insets.left - insets.right
         label.text = text
         label.font = UIFont.systemFont(ofSize: fontSize)
-        label.sizeToFit()
+        //label.backgroundColor = UIColor.black
+        //label.sizeToFit()
         
         v.addSubview(label)
         
@@ -224,16 +224,6 @@ import UIKit
         vertConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|[btn]|", options: [], metrics: nil, views: views)
         addConstraints(vertConstraints)
         
-        invalidateIntrinsicContentSize()
         
-        KUAnchoredPopupView.list.append(self)
-    }
-    
-    open override var intrinsicContentSize: CGSize {
-        label.sizeToFit()
-        var size = label.frame.size
-        size.width += insets.left + insets.right
-        //size.height += insets.top + insets.bottom //+ anchorHeight / 2
-        return size
     }
 }
