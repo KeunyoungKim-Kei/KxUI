@@ -167,7 +167,7 @@ import UIKit
         
         let v = UIView()
         v.translatesAutoresizingMaskIntoConstraints = false
-        v.isUserInteractionEnabled = false
+        //v.isUserInteractionEnabled = false
         v.clipsToBounds = true
         v.backgroundColor = popupColor
         v.layer.cornerRadius = cornerRadius
@@ -233,14 +233,14 @@ import UIKit
         btn.addTarget(self, action: #selector(dismiss), for: .touchUpInside)
         btn.setTitle(nil, for: .normal)
         
-        insertSubview(btn, belowSubview: v)
+        v.insertSubview(btn, belowSubview: label)
         
         views = ["btn": btn]
         horzConstraints = NSLayoutConstraint.constraints(withVisualFormat: "|[btn]|", options: [], metrics: nil, views: views)
-        addConstraints(horzConstraints)
+        v.addConstraints(horzConstraints)
         
         vertConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|[btn]|", options: [], metrics: nil, views: views)
-        addConstraints(vertConstraints)
+        v.addConstraints(vertConstraints)
         
         
     }
