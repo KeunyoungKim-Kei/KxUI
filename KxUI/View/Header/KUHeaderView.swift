@@ -31,6 +31,12 @@ public enum HeaderPosition {
 public typealias HeaderTapHandler = (HeaderPosition) -> ()
 public typealias CustomHeaderSetupHandler = (HeaderPosition, UIView) -> Set<HeaderPosition>
 
+public extension Notification.Name {
+    public static let KUHeaderLeftButtonTap   = Notification.Name(rawValue: "KUHeaderLeftButtonTapNotification")
+    public static let KUHeaderCenterButtonTap = Notification.Name(rawValue: "KUHeaderCenterButtonTapNotification")
+    public static let KUHeaderRightButtonTap  = Notification.Name(rawValue: "KUHeaderRightButtonTapNotification")
+}
+
 
 @IBDesignable open class KUHeaderView: KUHeaderBaseView {
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -46,6 +52,7 @@ public typealias CustomHeaderSetupHandler = (HeaderPosition, UIView) -> Set<Head
     
     open func performLeftAction() {
         tapHandler?(.left)
+        NotificationCenter.default.post(name: Notification.Name.KUHeaderLeftButtonTap, object: leftActionButton)
     }
     
     
@@ -269,10 +276,11 @@ public typealias CustomHeaderSetupHandler = (HeaderPosition, UIView) -> Set<Head
     
     
    
-    
+    var centerButton: UIButton?
     
     func performCenterAction() {
         tapHandler?(.center)
+        NotificationCenter.default.post(name: NSNotification.Name.KUHeaderCenterButtonTap, object: centerButton)
     }
     
     
@@ -315,6 +323,7 @@ public typealias CustomHeaderSetupHandler = (HeaderPosition, UIView) -> Set<Head
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.setTitle(nil, for: .normal)
         btn.addTarget(self, action: #selector(performCenterAction), for: .touchUpInside)
+        centerButton = btn
         
         centerContainerView.addSubview(btn)
         
@@ -334,7 +343,7 @@ public typealias CustomHeaderSetupHandler = (HeaderPosition, UIView) -> Set<Head
     // MARK: - Right
     
     open lazy var rightActionButton: UIButton = {
-        let btn = UIButton(type: .system)
+        let btn = UIButton(type: .custom)
         btn.setTitle(nil, for: .normal)
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.addTarget(self, action: #selector(performRightAction), for: .touchUpInside)
@@ -345,6 +354,7 @@ public typealias CustomHeaderSetupHandler = (HeaderPosition, UIView) -> Set<Head
     
     open func performRightAction() {
         tapHandler?(.right)
+        NotificationCenter.default.post(name: Notification.Name.KUHeaderRightButtonTap, object: rightActionButton)
     }
     
     @IBInspectable
