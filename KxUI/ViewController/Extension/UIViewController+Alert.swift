@@ -46,6 +46,7 @@ public extension UIViewController {
             let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
             
             alert.addTextField(configurationHandler: { (textField) in
+                textField.isSecureTextEntry = true
                 textField.placeholder = NSLocalizedString("비밀번호를 입력해 주세요.", comment: "비밀번호를 입력해 주세요.")
             })
             
