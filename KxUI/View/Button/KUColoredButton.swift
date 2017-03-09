@@ -38,6 +38,13 @@ import UIKit
         }
     }
     
+    @IBInspectable
+    open var disabledColor: UIColor?  {
+        didSet {
+            setupView()
+        }
+    }
+    
     override func setupView() {
         super.setupView()
         
@@ -48,6 +55,11 @@ import UIKit
         setBackgroundImage(nil, for: .highlighted)
         if let color = highlightedColor, let img = UIImage.from(color: color) {
             setBackgroundImage(img, for: .highlighted)
+        }
+        
+        setBackgroundImage(nil, for: .disabled)
+        if let color = disabledColor, let img = UIImage.from(color: color) {
+            setBackgroundImage(img, for: .disabled)
         }
     }
 

@@ -90,6 +90,10 @@ public extension UIColor {
         self.init(normalizedRgbComponents: list)
     }
     
+    public convenience init?(whiteComponent: Int) {
+        self.init(rgbComponents: [whiteComponent, whiteComponent, whiteComponent])
+    }
+    
     /// 
     public var normalizedRGBAComponent: (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat)? {
         var normalizedR: CGFloat = 0

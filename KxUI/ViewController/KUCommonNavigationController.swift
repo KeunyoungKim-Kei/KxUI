@@ -20,23 +20,33 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
+import UIKit
 
-public struct SegueIdentifier {
-    public static let login        = "LoginSegue"
-    public static let join         = "JoinSegue"
-    public static let home         = "HomeSegue"
-    public static let child        = "ChildSegue"
-    public static let menu         = "MenuSegue"
-    public static let summary      = "SummarySegue"
-    public static let detail       = "DetailSegue"
-    public static let confirm      = "ConfirmSegue"
-    public static let eula         = "EULASegue"
-    public static let privacy      = "PrivacySegue"
-    public static let popup        = "PopupSegue"
-    public static let history      = "HistorySegue"
-    public static let notice       = "NoticeSegue"
-    public static let profile      = "ProfileSegue"
-    public static let tutorial     = "TutorialSegue"
-    public static let emailConfirm = "EmailConfirmSegue"
+class KUCommonNavigationController: UINavigationController {
+
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        if let topVC = topViewController as? KUCommonViewController {
+            if let color = topVC.headerView?.backgroundColor {
+                return color.isDark ? .lightContent : .default
+            }
+        }
+        
+        return .lightContent
+    }
+    
+
+    override var childViewControllerForStatusBarStyle: UIViewController? {
+        return viewControllers.last
+    }
+    
+    override var childViewControllerForStatusBarHidden: UIViewController? {
+        return viewControllers.last
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        automaticallyAdjustsScrollViewInsets = false
+        extendedLayoutIncludesOpaqueBars = true
+    }
 }

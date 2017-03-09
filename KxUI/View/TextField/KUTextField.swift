@@ -19,24 +19,27 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 //
+import UIKit
 
-import Foundation
+open class KUTextField: UITextField {
+    
+    open var charSet: CharacterSet? {
+        return nil 
+    }
 
-public struct SegueIdentifier {
-    public static let login        = "LoginSegue"
-    public static let join         = "JoinSegue"
-    public static let home         = "HomeSegue"
-    public static let child        = "ChildSegue"
-    public static let menu         = "MenuSegue"
-    public static let summary      = "SummarySegue"
-    public static let detail       = "DetailSegue"
-    public static let confirm      = "ConfirmSegue"
-    public static let eula         = "EULASegue"
-    public static let privacy      = "PrivacySegue"
-    public static let popup        = "PopupSegue"
-    public static let history      = "HistorySegue"
-    public static let notice       = "NoticeSegue"
-    public static let profile      = "ProfileSegue"
-    public static let tutorial     = "TutorialSegue"
-    public static let emailConfirm = "EmailConfirmSegue"
+    @IBOutlet public weak var prevField: UITextField!
+    @IBOutlet public weak var nextField: UITextField!
+    
+    @IBInspectable open var minLength: Int = 0 {
+        didSet {
+            
+        }
+    }
+    
+    @IBInspectable open var maxLength: Int = Int.max {
+        didSet {
+            
+        }
+    }
+
 }

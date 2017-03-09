@@ -20,23 +20,29 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
+import UIKit
 
-public struct SegueIdentifier {
-    public static let login        = "LoginSegue"
-    public static let join         = "JoinSegue"
-    public static let home         = "HomeSegue"
-    public static let child        = "ChildSegue"
-    public static let menu         = "MenuSegue"
-    public static let summary      = "SummarySegue"
-    public static let detail       = "DetailSegue"
-    public static let confirm      = "ConfirmSegue"
-    public static let eula         = "EULASegue"
-    public static let privacy      = "PrivacySegue"
-    public static let popup        = "PopupSegue"
-    public static let history      = "HistorySegue"
-    public static let notice       = "NoticeSegue"
-    public static let profile      = "ProfileSegue"
-    public static let tutorial     = "TutorialSegue"
-    public static let emailConfirm = "EmailConfirmSegue"
+public var DefaultTransitionDuration: CGFloat = 0.3
+
+public enum TransitionDirection {
+    case forward
+    case backward
+}
+
+open class KUViewControllerTransitionManager: NSObject, UIViewControllerAnimatedTransitioning {
+    public var startVC: UIViewController?
+    public var endVC: UIViewController?
+    public var containerView: UIView!
+    
+    public var direction = TransitionDirection.forward
+    
+    open func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        startVC = transitionContext.viewController(forKey: .from)
+        endVC = transitionContext.viewController(forKey: .to)
+        containerView = transitionContext.containerView
+    }
+    
+    open func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+        return 0.5
+    }
 }

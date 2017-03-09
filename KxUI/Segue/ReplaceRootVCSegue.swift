@@ -29,6 +29,8 @@ open class ReplaceRootVCSegue: UIStoryboardSegue {
     
     override open func perform() {
         guard let appDelegate = UIApplication.shared.delegate, let window = appDelegate.window else { return }
+        window?.rootViewController?.view.removeFromSuperview()
+        window?.rootViewController?.removeFromParentViewController()
         window?.rootViewController = destination
         
         if let mainWindow = window {

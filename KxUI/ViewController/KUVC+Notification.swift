@@ -22,11 +22,11 @@
 
 
 public extension KUCommonViewController {
-    public func post(rawNotificationName name: String, object: AnyObject? = nil) {
+    public func post(rawNotificationName name: String, object: Any? = nil) {
         post(name: Notification.Name(rawValue: name), object: object)
     }
     
-    public func post(name: Notification.Name, object: AnyObject? = nil) {
+    public func post(name: Notification.Name, object: Any? = nil) {
         NotificationCenter.default.post(name: name, object: object)
     }
     

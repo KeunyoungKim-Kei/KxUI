@@ -20,23 +20,24 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
+import UIKit
 
-public struct SegueIdentifier {
-    public static let login        = "LoginSegue"
-    public static let join         = "JoinSegue"
-    public static let home         = "HomeSegue"
-    public static let child        = "ChildSegue"
-    public static let menu         = "MenuSegue"
-    public static let summary      = "SummarySegue"
-    public static let detail       = "DetailSegue"
-    public static let confirm      = "ConfirmSegue"
-    public static let eula         = "EULASegue"
-    public static let privacy      = "PrivacySegue"
-    public static let popup        = "PopupSegue"
-    public static let history      = "HistorySegue"
-    public static let notice       = "NoticeSegue"
-    public static let profile      = "ProfileSegue"
-    public static let tutorial     = "TutorialSegue"
-    public static let emailConfirm = "EmailConfirmSegue"
+public extension UIColor {
+    public var isDark: Bool {
+        var brightness: CGFloat = 0
+        
+        if let colorSpace = self.cgColor.colorSpace {
+            switch colorSpace.model {
+            case .rgb:
+                if let r = normalizedRedComponent, let g = normalizedGreenComponent, let b = normalizedBlueComponent {
+                    brightness = ((r * 299) + (g * 587) + (b + 114)) / 1000
+                }
+            default:
+                self.getWhite(&brightness, alpha: nil)
+            }
+        }
+        
+        print(brightness)
+        return brightness < 0.5
+    }
 }

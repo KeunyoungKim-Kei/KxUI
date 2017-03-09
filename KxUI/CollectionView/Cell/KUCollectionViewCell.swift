@@ -20,24 +20,9 @@
 //  THE SOFTWARE.
 //
 
-//public protocol KUTableViewCellCompatible: class {
-//    associatedtype DataType
-//    associatedtype CellType
-//    
-//    func compose(with data: DataType?)
-//    static func dequeueComposedCell(from tableView: UITableView, data: DataType?) -> CellType
-//}
+import UIKit
 
-/**
- 테이블뷰 셀 공통 클래스
- */
-open class KUTableViewCell<T>: UITableViewCell {
-    
-    
-    /// 셀 고정 높이
-    open class var cellHeight: CGFloat {
-        return UITableViewAutomaticDimension
-    }
+open class KUCollectionViewCell<T>: UICollectionViewCell {
     
     /**
      셀 재사용 식별자
@@ -61,8 +46,8 @@ open class KUTableViewCell<T>: UITableViewCell {
      
      - Returns: 데이터 구성이 완료된 테이블뷰 셀. 정상적으로 구성할 수 없는 경우 nil을 리턴하여 예외가 발생하도록 합니다.
      */
-    open class func dequeueComposedCell<C: KUTableViewCell>(from tableView: UITableView, data: T?) -> C {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! C
+    open class func dequeueComposedCell<C: KUCollectionViewCell>(from collectionView: UICollectionView, indexPath: IndexPath, data: T?) -> C {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! C
         cell.compose(with: data)
         return cell
     }

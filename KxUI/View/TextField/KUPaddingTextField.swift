@@ -21,7 +21,7 @@
 //
 
 
-@IBDesignable open class KUPaddingTextField: UITextField {
+@IBDesignable open class KUPaddingTextField: KUTextField {
     @IBInspectable open var leftPadding: CGFloat = 20 {
         didSet {
             setup()

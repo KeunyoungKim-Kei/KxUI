@@ -23,12 +23,14 @@
 import UIKit
 
 open class KUHeaderBaseView: KUUnderlineView {
+    @IBOutlet public weak var containerVC: UIViewController!
+    
     /// 왼쪽 메뉴 컨테이너뷰
     lazy var leftContainerView: UIView = {
         let v = UIView()
         v.translatesAutoresizingMaskIntoConstraints = false
         v.clipsToBounds = true
-        v.backgroundColor = self.backgroundColor
+        //v.backgroundColor = self.backgroundColor
         
         return v
     }()
@@ -39,7 +41,7 @@ open class KUHeaderBaseView: KUUnderlineView {
         let v = UIView()
         v.translatesAutoresizingMaskIntoConstraints = false
         v.clipsToBounds = false
-        v.backgroundColor = self.backgroundColor
+        //v.backgroundColor = self.backgroundColor
         
         return v
     }()
@@ -50,7 +52,7 @@ open class KUHeaderBaseView: KUUnderlineView {
         let v = UIView()
         v.translatesAutoresizingMaskIntoConstraints = false
         v.clipsToBounds = true
-        v.backgroundColor = self.backgroundColor
+        //v.backgroundColor = self.backgroundColor
         
         return v
     }()
@@ -110,6 +112,7 @@ open class KUHeaderBaseView: KUUnderlineView {
         addSubview(centerContainerView)
         
         var horzConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|[leftContainerView][centerContainerView][rightContainerView]|", options: [], metrics: nil, views: views)
+        //print(horzConstraints)
         addConstraints(horzConstraints)
         
         var vertConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[leftContainerView]|", options: [], metrics: nil, views: views)

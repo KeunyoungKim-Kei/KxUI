@@ -29,11 +29,11 @@ public extension UIViewController {
      
      - Parameter message: 경고 메시지
      */
-    public func showInfoAlert(title: String? = nil, message: String, confirmTitle: String = NSLocalizedString("확인", comment: "확인")) {
+    public func showInfoAlert(title: String? = nil, message: String, confirmTitle: String = NSLocalizedString("확인", comment: "확인"), positiveHandler: KUAlertReponseHandler? = nil ) {
         DispatchQueue.main.async { [weak self] in
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
             
-            let action = UIAlertAction(title: confirmTitle, style: UIAlertActionStyle.default, handler: nil)
+            let action = UIAlertAction(title: confirmTitle, style: UIAlertActionStyle.default, handler: { action in positiveHandler?() })
             alert.addAction(action)
             
             self?.present(alert, animated: true, completion: nil)

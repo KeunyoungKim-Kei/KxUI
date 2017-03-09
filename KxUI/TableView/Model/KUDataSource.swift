@@ -27,16 +27,24 @@ public enum DataFetchType {
     case incremental
 }
 
-public protocol KUDataContainer {
-    associatedtype ItemType
-    
+public typealias ApiDictionary = [String: Any]
+public typealias ApiDictionaryList = [ApiDictionary]
+
+public protocol ApiDictionaryParsable {
+    init?(dict: ApiDictionary)
+}
+
+public protocol DataSourceCompatible {
+    associatedtype DataType
     var count: Int { get }
-    
-    subscript(at: IndexPath) -> ItemType? { get }
-    
-    mutating func append(_ item: ItemType)
-    mutating func append(items: [ItemType])
-    mutating func fetch(type: DataFetchType, completion: KUDataFetchCompletion?)
+    var cellCount: Int { get }
+    subscript(at: IndexPath) -> DataType? { get }
+    subscript(index: Int) -> DataType? { get }
+    func fetch(type: DataFetchType, completion: KUDataFetchCompletion?)
+}
+
+public protocol TableViewDataSourceCompatible: DataSourceCompatible {
+    init(tableView: UITableView?)
 }
 
 public extension Array {
@@ -65,113 +73,146 @@ public struct KUSectionData<T> {
     }
 }
 
-open class KUDataSource<T> {
-    let fetchQueue = DispatchQueue.global(qos: .userInitiated)
+open class KUDataSource<T: ApiDictionaryParsable>: DataSourceCompatible {
+    /// 데이터 요청 큐
+    open let fetchQueue = DispatchQueue.global(qos: .userInitiated)
     
+    /// 데이터 요청 형식
     open var fetchType = DataFetchType.refresh
     
-    open var tableView: UITableView?
+//    /// 연관 테이블 뷰
+//    open var tableView: UITableView?    
     
-    open var itemList = [KUSectionData<T>]()
-    open var filteredList = [KUSectionData<T>]()
+    /// 데이터 배열
+    open var list = [T]()
     
-    open var showsNetworkIndicator = false
-    open var fetchMoreEnabled = true
-    open var fetchSize = 20
+    /// 필터링된 데이터 배열
+    open var filteredList = [T]()
+    
+    /// 요청 페이지
+    open var fetchPage = 1
+    
+    /// 요청 데이터 수
+    open var pageSize: Int {
+        return 10
+    }
+    
+    /// 추가 데이터 존재 플래그
     open var hasMore = true
+    
+    /// 가져오기 상태 플래그
     open var fetching = false
     
-    open var counterBeforeFetch: [(section: Int, row: Int)] = []
+    /// 요청 전 데이터 수
+    open var countBeforeFetch = 0
     
+    /// 검색 키워드
     open var searchKeyword: String?
     
+    /// 처리 대상 섹션
+    open var targetSection = 0
     
+    /// 검색 상태 플래그
     open var searching: Bool {
         return searchKeyword != nil
     }
     
-    open var targetList: [KUSectionData<T>] {
+    open var updateMinimulInterval = 1.0
+    
+    /// 무효화 플래그. 실행중인 데이터 요청을 중지하기 위해 사용
+    open var invalidated = false
+    
+    /// 처리 대상 배열. 검색시 필터링된 데이터 배열 리턴
+    open var targetList: [T] {
         if searching {
             return filteredList
         }
         
-        return itemList
+        return list
     }
     
-    open func itemCount(at section: Int) -> Int {
-        if targetList.validateBound(with: section) {
-            return targetList[section].count
-        }
-        
-        return 0
-    }
-    
-    
-    open func rowCount(at section: Int) -> Int {
-        if fetchMoreEnabled && section == sectionCount() - 1 && itemCount(at: section) > 0 {
-            return targetList[section].count + 1
-        }
-        
-        return targetList[section].count
-    }
-    
-    open func sectionCount() -> Int {
+    /// 실제 데이터 수
+    open var count: Int {
         return targetList.count
     }
     
+    /// 테이블에 표시할 셀 수
+    open var cellCount: Int {
+        if targetList.count > 0 {
+            return targetList.count + 1
+        } else if !hasMore {
+            return targetList.count + 1
+        }
+        
+        return targetList.count
+    }
     
-    open subscript(_ indexPath: IndexPath) -> T? {
-        guard targetList.validateBound(with: indexPath.section) else {
+    /// 테이블에 표시할 섹션 수
+    open var sectionCount: Int {
+        return 1
+    }
+    
+    /// 지징된 위치에 있는 데이터 리턴
+    ///
+    /// - Parameter at: 인덱스패스. row 값만 사용함
+    open subscript(at: IndexPath) -> T? {
+        guard at.row < targetList.count else {
             return nil
         }
         
-        guard targetList[indexPath.section].validateBound(with: indexPath.row) else {
+        return targetList[at.row]
+    }
+    
+    
+    /// 지정된 인덱스에 있는 데이터 리턴
+    ///
+    /// - Parameter index: 인덱스
+    open subscript(index: Int) -> T? {
+        guard index < targetList.count else {
             return nil
         }
         
-        return targetList[indexPath.section][indexPath.row]
+        return targetList[index]
     }
     
-    open func titleFor(section: Int) -> String? {
-        guard targetList.validateBound(with: section) else { return nil }
+    /**
+     To initialize a new object (the receiver) immediately after memory for it has been allocated.
+     
+     - Returns: An initialized object, or nil if an object could not be created for some reason that would not result in an exception.
+     */
+    init() {
         
-        return targetList[section].title
     }
     
-    public init(tableView: UITableView? = nil) {
-        self.tableView = tableView
-        
-        if let tahbleView = tableView as? KUDynamicTableView {
-            tahbleView.refreshHandler = { [weak self] tbl in
-                self?.fetch(type: .refresh)
-            }
-        }
+//    /**
+//     새로운 데이터 소스를 초기화 합니다.
+//     
+//     - Parameter tableView: 연관된 테이블뷰
+//     */
+//    public init(tableView: UITableView? = nil) {
+//        self.tableView = tableView
+//        
+//        if let tahbleView = tableView as? KUDynamicTableView {
+//            tahbleView.refreshHandler = { [weak self] tbl in
+//                self?.fetch(type: .refresh)
+//            }
+//        }
+//    }
+    
+    /**
+     데이터를 초기화 합니다.
+     */
+    open func reset() {
+        list = []
     }
     
-    open func append(_ item: T, at section: Int = 0, title: String? = nil) {
-        append(items: [item], at: section, title: title)
-    }
-    
-    open func append(items: [T], at section: Int = 0, title: String? = nil) {
-        if searching {
-            if !filteredList.validateBound(with: section) {
-                let newSection = KUSectionData(title: title, itemList: items)
-                filteredList.append(newSection)
-            } else {
-                filteredList[section].itemList.append(contentsOf: items)
-            }
-        } else {
-            if !itemList.validateBound(with: section) {
-                let newSection = KUSectionData(title: title, itemList: items)
-                itemList.append(newSection)
-            } else {
-                itemList[section].itemList.append(contentsOf: items)
-            }
-        }
-    }
-    
-    private func shouldStartFetching(fetchOffset: Int) -> Bool {
-        if fetchOffset == 0 {
+    /**
+     데이터 요청이 가능한지 확인 후 준비 작업을 실행합니다.
+     
+     - Returns: 데이터 요청이 가능한 경우 true, 그 외의 경우 false
+     */
+    private func shouldStartFetching() -> Bool {
+        if fetchType == .refresh {
             hasMore = true
         }
         
@@ -181,85 +222,111 @@ open class KUDataSource<T> {
         
         fetching = true
         
-        if fetchOffset == 0 {
-            fetchType = .refresh
-            if searching {
-                filteredList.removeAll()
-            } else {
-                itemList.removeAll()
-            }
-        } else {
-            fetchType = .incremental
+        if fetchType == .refresh {
+            reset()
         }
         
-        print("start fetching.. \(fetchOffset)")
+        countBeforeFetch = list.count
         
-        for section in 0..<targetList.count {
-            let rowCount = targetList[section].count
-            
-            counterBeforeFetch.append((section: section, row: rowCount))
-        }
-        
-        if showsNetworkIndicator {
-            UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        }
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         return true
     }
     
-    private func finishFetching() {
+    /**
+     데이터 요청 후 마무리 작업을 실행합니다.
+     */
+    func finishFetching() {
         fetching = false
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
         
-        if showsNetworkIndicator {
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
-        }
-        
-        if let tbl = tableView as? KUDynamicTableView {
-            tbl.endRefreshing()
-        }
+//        if let tbl = tableView as? KUDynamicTableView {
+//            tbl.endRefreshing()
+//        }
     }
     
-    
+    /**
+     데이터를 요청합니다.
+     
+     - Parameter type: 데이터 요청 형식
+     - Parameter completion: 완료 블록
+     */
     open func fetch(type: DataFetchType = .refresh, completion: KUDataFetchCompletion? = nil) {
         defer {
             finishFetching()
         }
         
-        let offset = type == .incremental ? targetList.count : 0
+        fetchType = type
         
-        guard shouldStartFetching(fetchOffset: offset) else { return }
+        guard shouldStartFetching() else { return }
+        
+        switch fetchType {
+        case .refresh:
+            fetchPage = 1
+        case .incremental:
+            fetchPage += 1
+        }
         
         fetchQueue.async { [weak self] in
             self?.composeList(completion: completion)
         }
     }
     
+    /**
+     데이터 요청 후 전달받은 응답 데이터를 통해 목록을 구성합니다.
+     
+     - Parameter completion: 완료 블록
+     */
     open func composeList(completion: KUDataFetchCompletion? = nil) {
-        DispatchQueue.main.async { [weak self] in
-            if let strongSelf = self {
-                switch strongSelf.fetchType {
-                case .refresh:
-                    print("done refresh")
-                    strongSelf.tableView?.reloadData()
-                case .incremental:
-                    print("done incremental")
-                    
-                    strongSelf.tableView?.reloadData()
-                }
+//        guard !invalidated else {
+//            invalidated = false
+//            return
+//        }
+//        
+//        switch fetchType {
+//        case .refresh:
+//            DispatchQueue.main.async { [weak self] in
+//                self?.tableView?.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: false)
+//                self?.tableView?.reloadData()
+//                completion?()
+//            }
+//        case .incremental:
+//            DispatchQueue.main.asyncAfter(deadline: .now() + updateMinimulInterval) { [weak self] in
+//                if let strongSelf = self {
+//                    var indexPaths = [IndexPath]()
+//                    for index in strongSelf.countBeforeFetch..<strongSelf.list.count {
+//                        indexPaths.append(IndexPath(row: index, section: strongSelf.targetSection))
+//                    }
+//                    
+//                    if indexPaths.count > 0 {
+//                        strongSelf.tableView?.insertRows(at: indexPaths, with: .automatic)
+//                    }
+//                    
+//                    let lastIndexPath = IndexPath(row: strongSelf.list.count, section: strongSelf.targetSection)
+//                    strongSelf.tableView?.reloadRows(at: [lastIndexPath], with: .automatic)
+//                }
+//                
+//                completion?()
+//            }
+//        }
+    }
+    
+    open var totalDataCount = 0
+    
+    open func updateAdditionalDataStatus(from list: ApiDictionaryList, totalCnt: Int) {
+        totalDataCount = totalCnt
+        hasMore = !(list.count == 0 || self.list.count + list.count >= totalCnt)
+    }
+    
+    open func fillArray(from list: ApiDictionaryList, totalCnt: Int) {
+        updateAdditionalDataStatus(from: list, totalCnt: totalCnt)
+        
+        for item in list {
+            guard let data = T(dict: item) else {
+                continue
             }
             
-            completion?()
+            self.list.append(data)
         }
     }
-    
-    
-    open func composeList() {
-        fatalError("Override this!")
-    }
 }
-
-
-
-
-let DummyTitle = "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
-let DummyContent = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."

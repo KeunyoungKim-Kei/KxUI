@@ -28,6 +28,14 @@ public enum HeaderPosition {
     case right
 }
 
+public enum HeaderAction {
+    case none
+    case custom
+    case pop
+    case dismiss
+    case automatic
+}
+
 public typealias HeaderTapHandler = (HeaderPosition) -> ()
 public typealias CustomHeaderSetupHandler = (HeaderPosition, UIView) -> Set<HeaderPosition>
 
@@ -50,51 +58,78 @@ public extension Notification.Name {
         return btn
     }()
     
+    open var leftAction: HeaderAction = HeaderAction.custom
+    
     open func performLeftAction() {
-        tapHandler?(.left)
-        NotificationCenter.default.post(name: Notification.Name.KUHeaderLeftButtonTap, object: leftActionButton)
+        guard isLeftActionEnabled && (leftImage != nil || leftTitle != nil) else { return }
+        
+        switch leftAction {
+        case .pop:
+            containerVC.navigationController?.popViewController(animated: true)
+        case .dismiss:
+            containerVC.dismiss(animated: true, completion: nil)
+        case .automatic:
+            if let nav = containerVC?.navigationController {
+                nav.popViewController(animated: true)
+            } else {
+                containerVC?.dismiss(animated: true, completion: nil)
+            }
+        case .none:
+            return
+        default:
+            tapHandler?(.left)
+            NotificationCenter.default.post(name: Notification.Name.KUHeaderLeftButtonTap, object: leftActionButton)
+        }
     }
     
     
     @IBInspectable
     open var isLeftActionEnabled = true {
         didSet {
-            updateLeftButtonAttributes()
+            leftActionButton.isEnabled = isLeftActionEnabled
         }
     }
     
     @IBInspectable
     open var leftImage: UIImage? = nil {
         didSet {
-            updateLeftButtonAttributes()
+            leftActionButton.setImage(leftImage, for: .normal)
         }
     }
     
     @IBInspectable
     open var leftImageOffset: CGPoint = CGPoint.zero {
         didSet {
-            updateLeftButtonAttributes()
+            var inset = UIEdgeInsets.zero
+            inset.left = leftImageOffset.x
+            inset.top = leftImageOffset.y
+            
+            leftActionButton.imageEdgeInsets = inset
         }
     }
     
     @IBInspectable
     open var leftTitle: String? = nil {
         didSet {
-            updateLeftButtonAttributes()
+            leftActionButton.setTitle(leftTitle, for: .normal)
         }
     }
     
     @IBInspectable
     open var leftTitleOffset: CGPoint = CGPoint.zero {
         didSet {
-            updateLeftButtonAttributes()
+            var inset = UIEdgeInsets.zero
+            inset.left = leftTitleOffset.x
+            inset.top = leftTitleOffset.y
+            
+            leftActionButton.titleEdgeInsets = inset
         }
     }
     
     @IBInspectable
-    open var leftTitleColor: UIColor? {
+    open var leftTitleColor: UIColor? = UIColor.black {
         didSet {
-            updateLeftButtonAttributes()
+            leftActionButton.setTitleColor(leftTitleColor ?? leftActionButton.tintColor, for: .normal)
         }
     }
     
@@ -170,16 +205,19 @@ public extension Notification.Name {
     
     /// 헤더 제목 문자열
     @IBInspectable
-    open var headerTitle: String? = "Untitled" {
+    open var headerTitle: String? = "" {
         didSet {
             updateCenterAttributes()
+            titleLabel.text = headerTitle
+            //titleLabel.textColor = headerTitleColor
         }
     }
     
     @IBInspectable
     open var headerTitleColor: UIColor = UIColor.black {
         didSet {
-            updateCenterAttributes()
+            //updateCenterAttributes()
+            titleLabel.textColor = headerTitleColor
         }
     }
     
@@ -197,15 +235,15 @@ public extension Notification.Name {
     @IBInspectable
     open var headerTitleLabelBottomMargin: CGFloat = 8 {
         didSet {
-            headerTitleLabelBottomConstraint?.constant = headerTitleLabelBottomMargin
+            headerTitleLabelBottomConstraint?.constant = -headerTitleLabelBottomMargin
             centerContainerView.layoutIfNeeded()
         }
     }
     
-    var headerTitleLabelBottomConstraint: NSLayoutConstraint?
+    public var headerTitleLabelBottomConstraint: NSLayoutConstraint?
     
     
-    func updateCenterAttributes() {
+    open func updateCenterAttributes() {
         if let image = headerImage {
             headerImageView.isHidden = false
             titleLabel.isHidden = !headerImageView.isHidden
@@ -241,7 +279,14 @@ public extension Notification.Name {
     @IBInspectable
     open var headerImage: UIImage? = nil {
         didSet {
-            updateCenterAttributes()
+            if let image = headerImage {
+                headerImageView.isHidden = false
+                titleLabel.isHidden = !headerImageView.isHidden
+                
+                headerImageView.image = image
+            } else {
+                headerImageView.isHidden = true
+            }
         }
     }
     
@@ -259,20 +304,25 @@ public extension Notification.Name {
     @IBInspectable
     open var headerImageViewBottomMargin: CGFloat = 8 {
         didSet {
-            updateCenterAttributes()
+            headerImageViewBottomConstraint?.constant = headerImageViewBottomMargin
+            headerImageView.layoutIfNeeded()
+            centerContainerView.layoutIfNeeded()
         }
     }
     
     @IBInspectable
     open var headerImageViewSize: CGSize = CGSize.zero {
         didSet {
-            updateCenterAttributes()
+            headerImageViewWidthConstraint?.constant = headerImageViewSize.width
+            headerImageViewHeightConstraint?.constant = headerImageViewSize.height
+            headerImageView.layoutIfNeeded()
+            centerContainerView.layoutIfNeeded()
         }
     }
     
-    var headerImageViewBottomConstraint: NSLayoutConstraint?
-    var headerImageViewWidthConstraint: NSLayoutConstraint?
-    var headerImageViewHeightConstraint: NSLayoutConstraint?
+    public var headerImageViewBottomConstraint: NSLayoutConstraint?
+    public var headerImageViewWidthConstraint: NSLayoutConstraint?
+    public var headerImageViewHeightConstraint: NSLayoutConstraint?
     
     
    
@@ -285,7 +335,7 @@ public extension Notification.Name {
     
     
     
-    func setupCenterContainer() {
+    open func setupCenterContainer() {
         guard setupHandler?(.center, centerContainerView).contains(.center) != .some(true) else {
             return
         }
@@ -344,58 +394,83 @@ public extension Notification.Name {
     
     open lazy var rightActionButton: UIButton = {
         let btn = UIButton(type: .custom)
-        btn.setTitle(nil, for: .normal)
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.addTarget(self, action: #selector(performRightAction), for: .touchUpInside)
         
         return btn
     }()
     
+    open var rightAction = HeaderAction.custom
     
     open func performRightAction() {
-        tapHandler?(.right)
-        NotificationCenter.default.post(name: Notification.Name.KUHeaderRightButtonTap, object: rightActionButton)
+        guard isRightActionEnabled && (rightImage != nil || rightTitle != nil) else { return }
+        
+        switch rightAction {
+        case .pop:
+            containerVC.navigationController?.popViewController(animated: true)
+        case .dismiss:
+            containerVC.dismiss(animated: true, completion: nil)
+        case .automatic:
+            if let nav = containerVC?.navigationController {
+                nav.popViewController(animated: true)
+            } else {
+                containerVC?.dismiss(animated: true, completion: nil)
+            }
+        case .none:
+            return
+        default:
+            tapHandler?(.right)
+            NotificationCenter.default.post(name: Notification.Name.KUHeaderRightButtonTap, object: rightActionButton)
+        }
     }
     
     @IBInspectable
     open var isRightActionEnabled = true {
         didSet {
-            updateRightButtonAttributes()
+            rightActionButton.isEnabled = isRightActionEnabled
         }
     }
     
     @IBInspectable
     open var rightImage: UIImage? = nil {
         didSet {
-            updateRightButtonAttributes()
+            rightActionButton.setImage(rightImage, for: .normal)
         }
     }
     
     @IBInspectable
-    open var rightImageFrame: CGRect = CGRect.zero {
+    open var rightImageOffset: CGPoint = CGPoint.zero {
         didSet {
-            updateRightButtonAttributes()
+            var inset = UIEdgeInsets.zero
+            inset.left = rightImageOffset.x
+            inset.top = rightImageOffset.y
+            
+            rightActionButton.imageEdgeInsets = inset
         }
     }
     
     @IBInspectable
     open var rightTitle: String? = nil {
         didSet {
-            updateRightButtonAttributes()
+            rightActionButton.setTitle(rightTitle, for: .normal)
         }
     }
     
     @IBInspectable
-    open var rightTitleFrame: CGRect = CGRect.zero {
+    open var rightTitleOffset: CGPoint = CGPoint.zero {
         didSet {
-            updateRightButtonAttributes()
+            var inset = UIEdgeInsets.zero
+            inset.left = rightTitleOffset.x
+            inset.top = rightTitleOffset.y
+            
+            leftActionButton.titleEdgeInsets = inset
         }
     }
     
     @IBInspectable
-    open var rightTitleColor: UIColor? {
+    open var rightTitleColor: UIColor? = UIColor.black {
         didSet {
-            updateRightButtonAttributes()
+            rightActionButton.setTitleColor(rightTitleColor ?? rightActionButton.tintColor, for: .normal)
         }
     }
     
@@ -410,16 +485,15 @@ public extension Notification.Name {
         if let image = rightImage {
             rightActionButton.setImage(image, for: .normal)
             
-            var inset = UIEdgeInsets()
-            inset.left = rightImageFrame.origin.x
-            inset.top = rightImageFrame.origin.y
-            inset.right = rightActionButton.bounds.width - (rightImageFrame.origin.x + rightImageFrame.width)
-            inset.bottom = rightActionButton.bounds.height - (rightImageFrame.origin.y + rightImageFrame.height)
+            var inset = UIEdgeInsets.zero
+            inset.left = rightImageOffset.x
+            inset.top = rightImageOffset.y
             
-//            rightActionButton.imageEdgeInsets = inset
+            rightActionButton.imageEdgeInsets = inset
             
             rightActionButton.setTitle(nil, for: .normal)
             rightActionButton.titleEdgeInsets = UIEdgeInsets.zero
+            rightActionButton.setNeedsDisplay()
             
             return
         } else {
@@ -430,18 +504,17 @@ public extension Notification.Name {
         if let title = rightTitle {
             rightActionButton.setTitle(rightTitle, for: .normal)
             
-            var inset = UIEdgeInsets()
-            inset.left = rightTitleFrame.origin.x
-            inset.top = rightTitleFrame.origin.y
-            inset.right = rightActionButton.bounds.width - (rightTitleFrame.origin.x + rightTitleFrame.width)
-            inset.bottom = rightActionButton.bounds.height - (rightTitleFrame.origin.y + rightTitleFrame.height)
+            var inset = UIEdgeInsets.zero
+            inset.left = rightTitleOffset.x
+            inset.top = rightTitleOffset.y
             
-            rightActionButton.titleEdgeInsets = inset
+            leftActionButton.titleEdgeInsets = inset
             
             rightActionButton.setTitleColor(rightTitleColor ?? rightActionButton.tintColor, for: .normal)
             
             rightActionButton.setImage(nil, for: .normal)
             rightActionButton.imageEdgeInsets = UIEdgeInsets.zero
+            rightActionButton.setNeedsDisplay()
         } else {
             rightActionButton.setTitle(nil, for: .normal)
             rightActionButton.titleEdgeInsets = UIEdgeInsets.zero
@@ -464,6 +537,8 @@ public extension Notification.Name {
         
         let vertConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|[rbtn]|", options: [], metrics: nil, views: views)
         rightContainerView.addConstraints(vertConstraints)
+        
+        updateRightButtonAttributes()
     }
     
     

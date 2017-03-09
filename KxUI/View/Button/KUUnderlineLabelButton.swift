@@ -20,23 +20,38 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
+import UIKit
 
-public struct SegueIdentifier {
-    public static let login        = "LoginSegue"
-    public static let join         = "JoinSegue"
-    public static let home         = "HomeSegue"
-    public static let child        = "ChildSegue"
-    public static let menu         = "MenuSegue"
-    public static let summary      = "SummarySegue"
-    public static let detail       = "DetailSegue"
-    public static let confirm      = "ConfirmSegue"
-    public static let eula         = "EULASegue"
-    public static let privacy      = "PrivacySegue"
-    public static let popup        = "PopupSegue"
-    public static let history      = "HistorySegue"
-    public static let notice       = "NoticeSegue"
-    public static let profile      = "ProfileSegue"
-    public static let tutorial     = "TutorialSegue"
-    public static let emailConfirm = "EmailConfirmSegue"
+@IBDesignable open class KUUnderlineLabelButton: UIButton {
+
+    open override func prepareForInterfaceBuilder() {
+        setupView()
+    }
+    
+    open override func awakeFromNib() {
+        super.awakeFromNib()
+        setupView()
+    }
+    
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        setupView()
+    }
+    
+    
+    func setupView() {
+        if let title = title(for: .normal), let label = titleLabel {
+            var frame = label.frame
+            frame.origin.y = frame.maxY
+            frame.size.height = 0.5
+            
+            let view = UIView(frame: frame)
+            view.backgroundColor = titleColor(for: .normal)
+            view.isUserInteractionEnabled = false
+            
+            addSubview(view)
+        }
+    }
+
 }

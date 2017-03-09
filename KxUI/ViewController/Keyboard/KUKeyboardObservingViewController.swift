@@ -25,16 +25,25 @@ import UIKit
 open class KUKeyboardObservingViewController: KUCommonViewController {
     
     /// 키보드 이벤트 감시 활성화 플래그
-    var observingEnabled = true
+    open var observingEnabled = true
     
-    var resignFirstResponderWhenDismiss = true
+    open var resignFirstResponderWhenDismiss = true
+    
+    open var defaultBottomMargin: CGFloat = 0.0
+    
+    @IBOutlet open weak var bottomLayoutConstraint: NSLayoutConstraint?
     
     /// 내용 스크롤뷰
     @IBOutlet open weak var contentScrollView: UIScrollView?
     
     
     open var keyboardFrame: CGRect = CGRect.zero
-    open var keyboardAnimationDuration: CGFloat = 0.3
+    open var keyboardAnimationDuration: TimeInterval = 0.3
+    open var keyboardAnimationCurve: UIViewAnimationCurve = UIViewAnimationCurve.easeInOut
+    
+    open var keyboardAnimationOption: UIViewAnimationOptions {
+        return UIViewAnimationOptions(rawValue: UInt(keyboardAnimationCurve.rawValue << 16))
+    }
     
     open lazy var keyboardHideTapGesture: UITapGestureRecognizer = {
         return UITapGestureRecognizer(target: self, action: #selector(KUKeyboardObservingViewController.handleTapGuesture(_:)))
@@ -48,6 +57,14 @@ open class KUKeyboardObservingViewController: KUCommonViewController {
     }
     
     open func onKeyboardWillHide() {
+        
+    }
+    
+    open func onKeyboardDidShow() {
+        
+    }
+    
+    open func onKeyboardDidHide() {
         
     }
     
@@ -79,26 +96,36 @@ open class KUKeyboardObservingViewController: KUCommonViewController {
         case NSNotification.Name.UIKeyboardWillShow:
             if let info = notification.userInfo {
                 keyboardFrame = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-                keyboardAnimationDuration = CGFloat((info[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).floatValue)
+                keyboardAnimationDuration = TimeInterval((info[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).floatValue)
+                keyboardAnimationCurve =  UIViewAnimationCurve(rawValue: (info[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber).intValue) ?? UIViewAnimationCurve.easeInOut
                 
                 DispatchQueue.main.async(execute: { [weak self] () -> Void in
                     self?.onKeyboardWillShow()
                 })
                 
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(keyboardAnimationDuration * CGFloat(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: { [weak self] () -> Void in
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(keyboardAnimationDuration * TimeInterval(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: { [weak self] () -> Void in
                     self?.inputTargetView = self?.findFirstResponder()
                 })
             }
             
+            if let constraint = bottomLayoutConstraint {
+                constraint.constant = (keyboardFrame.height + defaultBottomMargin)
+                view.layoutIfNeeded()
+            }
+            
             if let scrollView = contentScrollView {
                 var insets = scrollView.contentInset
-                insets.bottom = keyboardFrame.height
+                insets.bottom = keyboardFrame.height + defaultBottomMargin
                 scrollView.contentInset = insets
                 
                 insets = scrollView.scrollIndicatorInsets
-                insets.bottom = keyboardFrame.height
+                insets.bottom = keyboardFrame.height + defaultBottomMargin
                 scrollView.scrollIndicatorInsets = insets
             }
+        case Notification.Name.UIKeyboardDidShow:
+            DispatchQueue.main.async(execute: { [weak self] () -> Void in
+                self?.onKeyboardDidShow()
+            })
         case NSNotification.Name.UIKeyboardWillHide:
             inputTargetView = nil
             
@@ -106,6 +133,11 @@ open class KUKeyboardObservingViewController: KUCommonViewController {
                 self?.onKeyboardWillHide()
             })
             
+            if let constraint = bottomLayoutConstraint {
+                constraint.constant = defaultBottomMargin
+                view.layoutIfNeeded()
+            }
+            
             if let scrollView = contentScrollView {
                 var insets = scrollView.contentInset
                 insets.bottom = 0
@@ -115,6 +147,10 @@ open class KUKeyboardObservingViewController: KUCommonViewController {
                 insets.bottom = 0
                 scrollView.scrollIndicatorInsets = insets
             }
+        case Notification.Name.UIKeyboardDidHide:
+            DispatchQueue.main.async(execute: { [weak self] () -> Void in
+                self?.onKeyboardDidHide()
+            })
         default:
             break
         }
@@ -137,7 +173,7 @@ open class KUKeyboardObservingViewController: KUCommonViewController {
         super.viewWillAppear(animated)
         
         if observingEnabled {
-            register(names: [NSNotification.Name.UIKeyboardWillShow, NSNotification.Name.UIKeyboardWillHide])
+            register(names: [Notification.Name.UIKeyboardWillShow, Notification.Name.UIKeyboardDidShow, Notification.Name.UIKeyboardWillHide, Notification.Name.UIKeyboardDidHide])
         }
     }
     
@@ -152,7 +188,9 @@ open class KUKeyboardObservingViewController: KUCommonViewController {
     open override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        deregister(name: NSNotification.Name.UIKeyboardWillShow)
-        deregister(name: NSNotification.Name.UIKeyboardWillHide)
+        deregister(name: Notification.Name.UIKeyboardWillShow)
+        deregister(name: Notification.Name.UIKeyboardDidShow)
+        deregister(name: Notification.Name.UIKeyboardWillHide)
+        deregister(name: Notification.Name.UIKeyboardDidHide)
     }
 }

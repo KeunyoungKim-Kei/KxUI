@@ -15,12 +15,26 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        view.backgroundColor = UIColor.Apple.tealBlue
+        //view.backgroundColor = UIColor.Apple.tealBlue
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    @IBAction func asdfdsaf(_ sender: UIButton) {
+        let popup = KUAnchoredPopupView()        
+        popup.text = "2017.01.30 까지"
+        popup.label.font = UIFont.systemFont(ofSize: 10)
+        popup.popupColor = UIColor.MaterialBlue.primary
+        
+        popup.show(in: view, anchor: sender, centerOffset: 20, topMargin: 10)
+    }
+    
+    @IBAction func show(_ sender: UIButton) {
+        let popup = KUAnchoredPopupView()
+        popup.text = "asdfaDF"
+        popup.show(in: view, anchor: sender)
     }
 
 }

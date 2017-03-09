@@ -20,7 +20,40 @@
 //  THE SOFTWARE.
 //
 
+public extension Notification.Name {
+    public static let TableViewDidRefresh = Notification.Name(rawValue: "KUDynamicTableViewDidRefresh")
+}
+
 open class KUDynamicTableView: UITableView {
+    
+    public var sendNotificationWhenRefresh = true
+    
+    @IBInspectable
+    open var refreshEnabled: Bool = true {
+        didSet {
+            if refreshEnabled {
+                if #available(iOS 10.0, *) {
+                    refreshControl = UIRefreshControl()
+                    //refreshControl?.tintColor = UIColor.fiBrightBlue
+                    refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
+                    
+                    tableRefreshControl = refreshControl
+                } else {
+                    let control = UIRefreshControl()
+                    //control.tintColor = UIColor.fiBrightBlue
+                    control.addTarget(self, action: #selector(refresh), for: .valueChanged)
+                    
+                    addSubview(control)
+                    
+                    tableRefreshControl = control
+                }
+            } else {
+                tableRefreshControl?.removeTarget(self, action: #selector(refresh), for: .valueChanged)
+                tableRefreshControl?.removeFromSuperview()
+                tableRefreshControl = nil
+            }
+        }
+    }
     
     open var tableRefreshControl: UIRefreshControl?
     
@@ -33,20 +66,22 @@ open class KUDynamicTableView: UITableView {
 //        let noMoreDataNib = UINib(nibName: "NoMoreDataTableViewCell", bundle: nil)
 //        register(noMoreDataNib, forCellReuseIdentifier: NoMoreDataTableViewCell.cellIdentifier)
         
-        if #available(iOS 10.0, *) {
-            refreshControl = UIRefreshControl()
-            //refreshControl?.tintColor = UIColor.fiBrightBlue
-            refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
-            
-            tableRefreshControl = refreshControl
-        } else {
-            let control = UIRefreshControl()
-            //control.tintColor = UIColor.fiBrightBlue
-            control.addTarget(self, action: #selector(refresh), for: .valueChanged)
-            
-            addSubview(control)
-            
-            tableRefreshControl = control
+        if refreshEnabled {
+            if #available(iOS 10.0, *) {
+                refreshControl = UIRefreshControl()
+                //refreshControl?.tintColor = UIColor.fiBrightBlue
+                refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
+                
+                tableRefreshControl = refreshControl
+            } else {
+                let control = UIRefreshControl()
+                //control.tintColor = UIColor.fiBrightBlue
+                control.addTarget(self, action: #selector(refresh), for: .valueChanged)
+                
+                addSubview(control)
+                
+                tableRefreshControl = control
+            }
         }
     }
     
@@ -64,6 +99,10 @@ open class KUDynamicTableView: UITableView {
     open func refresh() {
         print("refresh")
         refreshHandler?(self)
+        
+        if sendNotificationWhenRefresh {
+            NotificationCenter.default.post(name: NSNotification.Name.TableViewDidRefresh, object: self)
+        }
     }
     
     open var refreshHandler: ((_ tableView: KUDynamicTableView) -> ())?

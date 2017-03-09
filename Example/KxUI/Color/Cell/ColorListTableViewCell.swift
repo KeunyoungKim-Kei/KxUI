@@ -33,12 +33,12 @@ final class ColorListTableViewCell: KUTableViewCell<ColorItem> {
         }
     }
 
-    override class func dequeueComposedCell(from tableView: UITableView, data: ColorItem?) -> ColorListTableViewCell? {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? ColorListTableViewCell {
-            cell.compose(with: data)
-            return cell
-        }
-        
-        return nil
-    }
+//    override class func dequeueComposedCell(from tableView: UITableView, data: ColorItem?) -> ColorListTableViewCell? {
+//        if let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? ColorListTableViewCell {
+//            cell.compose(with: data)
+//            return cell
+//        }
+//        
+//        return nil
+//    }
 }

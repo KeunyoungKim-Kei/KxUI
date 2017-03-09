@@ -132,8 +132,6 @@ import UIKit
         UIView.animate(withDuration: 0.3) { [weak self] in
             self?.alpha = 1.0
         }
-        
-        
     }
     
     open static func dismissAll(animated: Bool = true) {
@@ -156,6 +154,14 @@ import UIKit
                 self?.removeFromSuperview()
                 KUAnchoredPopupView.list.remove(at: index)
             }
+        }
+    }
+    
+    open func hide(after: DispatchTime = .now() + 2, disableTap: Bool = true) {
+        isUserInteractionEnabled = !disableTap
+        
+        DispatchQueue.main.asyncAfter(deadline: after) { [weak self] in
+            self?.dismiss()
         }
     }
     

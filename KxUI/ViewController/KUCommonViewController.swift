@@ -29,6 +29,20 @@ open class KUCommonViewController: UIViewController {
     open var notificationNames: [NSNotification.Name] = []
     open var backgroundImage: UIImage?
     
+    @IBOutlet public weak var headerView: KUHeaderView!
+    
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        if let parentVC = parent {
+            return parentVC.preferredStatusBarStyle
+        }
+        
+        if let color = headerView?.backgroundColor {
+            return color.isDark ? .lightContent : .default
+        }
+        
+        return .lightContent
+    }
+    
     /////////////////////////////////////////////////////////////////////
     //
     // MARK: - Notification
@@ -47,6 +61,11 @@ open class KUCommonViewController: UIViewController {
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         visibleToUser = true
+        
+        UIApplication.shared.setStatusBarStyle(preferredStatusBarStyle, animated: true)
+        setNeedsStatusBarAppearanceUpdate()        
+        
+        register(names: [.KUHeaderLeftButtonTap, .KUHeaderCenterButtonTap, .KUHeaderRightButtonTap])
     }
     
     
@@ -54,6 +73,8 @@ open class KUCommonViewController: UIViewController {
     open override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         visibleToUser = false
+        
+        deregister(names: [.KUHeaderLeftButtonTap, .KUHeaderCenterButtonTap, .KUHeaderRightButtonTap])
     }
     
     
