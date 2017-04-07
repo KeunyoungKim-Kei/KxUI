@@ -20,22 +20,6 @@
 //  THE SOFTWARE.
 //
 
-open class KUIndexPathButton: KUButton {
-    open var indexPath: IndexPath?
-}
-
-open class KUIndexPathSwitch: UISwitch {
-    open var indexPath: IndexPath?
-}
-
-open class KUIndexPathTextField: UITextField {
-    open var indexPath: IndexPath?
-}
-
-open class KUIndexPathSlider: UISlider {
-    open var indexPath: IndexPath?
-}
-
-open class KUIndexPathProgressView: UIProgressView {
-    open var indexPath: IndexPath?
+open class KUButton: UIButton {
+    open var data: Any?
 }

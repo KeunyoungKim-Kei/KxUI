@@ -39,4 +39,6 @@ public struct SegueIdentifier {
     public static let profile      = "ProfileSegue"
     public static let tutorial     = "TutorialSegue"
     public static let emailConfirm = "EmailConfirmSegue"
+    public static let map          = "MapSegue"
+    public static let result       = "ResultSegue"
 }

@@ -54,6 +54,7 @@
 		AA165F901E63520F00AD1D47 /* KUCommonNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA165F8F1E63520F00AD1D47 /* KUCommonNavigationController.swift */; };
 		AA2F6D901E616AD800612C8B /* UIColor+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F6D8F1E616AD800612C8B /* UIColor+Util.swift */; };
 		AA2F6DD31E61F30900612C8B /* KUViewControllerTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F6DD21E61F30900612C8B /* KUViewControllerTransitionManager.swift */; };
+		AA951F441E7EC4BF00511902 /* KUButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA951F431E7EC4BF00511902 /* KUButton.swift */; };
 		AAFFF8D61E6E7395001F93E2 /* KUTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFFF8D51E6E7395001F93E2 /* KUTextField.swift */; };
 		AAFFF8D81E6E76F2001F93E2 /* KUNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFFF8D71E6E76F2001F93E2 /* KUNumberField.swift */; };
 		BF09FFA9F842D830356B2E847D42D2FD /* Pods-KxUI_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C600D581BFC14C1D64D7A78FD8D1468 /* Pods-KxUI_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -131,6 +132,7 @@
 		AA165F8F1E63520F00AD1D47 /* KUCommonNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KUCommonNavigationController.swift; sourceTree = "<group>"; };
 		AA2F6D8F1E616AD800612C8B /* UIColor+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Util.swift"; sourceTree = "<group>"; };
 		AA2F6DD21E61F30900612C8B /* KUViewControllerTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KUViewControllerTransitionManager.swift; sourceTree = "<group>"; };
+		AA951F431E7EC4BF00511902 /* KUButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KUButton.swift; sourceTree = "<group>"; };
 		AAD0265E647277595C21216CE6397C94 /* Pods-KxUI_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-KxUI_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		AAFFF8D51E6E7395001F93E2 /* KUTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KUTextField.swift; sourceTree = "<group>"; };
 		AAFFF8D71E6E76F2001F93E2 /* KUNumberField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KUNumberField.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				1A142A1F1E50252F006521A0 /* KUColoredButton.swift */,
 				1A142A231E503AAA006521A0 /* KURadioButton.swift */,
 				AA0D87511E64415500C7DAAB /* KUUnderlineLabelButton.swift */,
+				AA951F431E7EC4BF00511902 /* KUButton.swift */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -642,6 +645,7 @@
 				AA2F6DD31E61F30900612C8B /* KUViewControllerTransitionManager.swift in Sources */,
 				1A142A1E1E502400006521A0 /* UIImage+Color.swift in Sources */,
 				1A1938A81E07C11500CC3929 /* KUUserDefaultsSwitch.swift in Sources */,
+				AA951F441E7EC4BF00511902 /* KUButton.swift in Sources */,
 				AAFFF8D81E6E76F2001F93E2 /* KUNumberField.swift in Sources */,
 				AA165F901E63520F00AD1D47 /* KUCommonNavigationController.swift in Sources */,
 				1A1938C61E07D10D00CC3929 /* KUVC+Notification.swift in Sources */,

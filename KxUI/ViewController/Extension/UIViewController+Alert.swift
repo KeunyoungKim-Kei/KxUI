@@ -76,7 +76,7 @@ public extension UIViewController {
      - Parameter positiveHandler: 긍정 응답 처리 클로저
      - Parameter negativeHandler: 부정 응답 처리 클로저
      */
-    public func showConfirmAlert(message: String, positiveButtonTitle: String = NSLocalizedString("확인", comment: "확인"), positiveHandler: KUAlertReponseHandler?, negativeHandler: KUAlertReponseHandler?) {
+    public func showConfirmAlert(message: String, positiveButtonTitle: String = NSLocalizedString("확인", comment: "확인"), positiveHandler: KUAlertReponseHandler?, negativeButtonTitle: String = NSLocalizedString("취소", comment: "취소"), negativeHandler: KUAlertReponseHandler?) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         
         let confirmAction = UIAlertAction(title: positiveButtonTitle, style: .default, handler: { alert in
@@ -84,7 +84,7 @@ public extension UIViewController {
         })
         alert.addAction(confirmAction)
         
-        let cancelAction = UIAlertAction(title: NSLocalizedString("취소", comment: "취소"), style: .cancel, handler: { alert in
+        let cancelAction = UIAlertAction(title: negativeButtonTitle, style: .cancel, handler: { alert in
             negativeHandler?()
         })
         alert.addAction(cancelAction)

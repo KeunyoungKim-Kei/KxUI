@@ -20,10 +20,13 @@
 //  THE SOFTWARE.
 //
 
+import Foundation
 
 public var LogViewControllerDeinitialization = true
 
 open class KUCommonViewController: UIViewController {
+    
+    open var standalone = false
     
     open var visibleToUser = true
     open var notificationNames: [NSNotification.Name] = []
@@ -41,6 +44,50 @@ open class KUCommonViewController: UIViewController {
         }
         
         return .lightContent
+    }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    // MARK: - Timer 
+    var timer: DispatchSourceTimer?
+    
+    open var timerEnabled: Bool {
+        return false
+    }
+    
+    open var timerInterval: DispatchTimeInterval {
+        return .seconds(3)
+    }
+    
+    /**
+     
+     */
+    func setupTimer(on queue: DispatchQueue = DispatchQueue.main) {
+        timer = DispatchSource.makeTimerSource(flags: [], queue: queue)
+        timer?.scheduleRepeating(deadline: .now(), interval: timerInterval)
+        timer?.setEventHandler { [weak self] in
+            print("=====================================")
+            self?.performTimerTask()
+        }
+    }
+    
+    open dynamic func performTimerTask() {
+        print("111")
+    }
+    
+    /**
+     
+     */
+    open func startTimer() {
+        setupTimer()
+        timer?.resume()
+    }
+    
+    /**
+     
+     */
+    open func stopTimer() {
+        timer?.cancel()
+        timer = nil
     }
     
     /////////////////////////////////////////////////////////////////////
@@ -66,9 +113,19 @@ open class KUCommonViewController: UIViewController {
         setNeedsStatusBarAppearanceUpdate()        
         
         register(names: [.KUHeaderLeftButtonTap, .KUHeaderCenterButtonTap, .KUHeaderRightButtonTap])
+        
+        if timerEnabled {
+            print("===================== START TIMER")
+            startTimer()
+        }
     }
     
-    
+    open override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        
+        stopTimer()
+    }
     
     open override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)

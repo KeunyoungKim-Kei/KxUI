@@ -31,6 +31,7 @@ public enum HeaderPosition {
 public enum HeaderAction {
     case none
     case custom
+    case customWithoutNotification
     case pop
     case dismiss
     case automatic
@@ -76,9 +77,11 @@ public extension Notification.Name {
             }
         case .none:
             return
+        case .custom:
+            NotificationCenter.default.post(name: Notification.Name.KUHeaderLeftButtonTap, object: leftActionButton)
+            fallthrough
         default:
             tapHandler?(.left)
-            NotificationCenter.default.post(name: Notification.Name.KUHeaderLeftButtonTap, object: leftActionButton)
         }
     }
     
@@ -418,9 +421,11 @@ public extension Notification.Name {
             }
         case .none:
             return
+        case .custom:
+            NotificationCenter.default.post(name: Notification.Name.KUHeaderRightButtonTap, object: rightActionButton)
+            fallthrough
         default:
             tapHandler?(.right)
-            NotificationCenter.default.post(name: Notification.Name.KUHeaderRightButtonTap, object: rightActionButton)
         }
     }
     
