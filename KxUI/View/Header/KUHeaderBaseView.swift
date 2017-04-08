@@ -26,7 +26,7 @@ open class KUHeaderBaseView: KUUnderlineView {
     @IBOutlet public weak var containerVC: UIViewController!
     
     /// 왼쪽 메뉴 컨테이너뷰
-    lazy var leftContainerView: UIView = {
+    public lazy var leftContainerView: UIView = {
         let v = UIView()
         v.translatesAutoresizingMaskIntoConstraints = false
         v.clipsToBounds = true
@@ -37,7 +37,7 @@ open class KUHeaderBaseView: KUUnderlineView {
     
     
     /// 중앙 내용 컨테이너뷰
-    lazy var centerContainerView: UIView = {
+    public lazy var centerContainerView: UIView = {
         let v = UIView()
         v.translatesAutoresizingMaskIntoConstraints = false
         v.clipsToBounds = false
@@ -48,7 +48,7 @@ open class KUHeaderBaseView: KUUnderlineView {
 
     
     /// 오른쪽 메뉴 컨테이너뷰
-    lazy var rightContainerView: UIView = {
+    public lazy var rightContainerView: UIView = {
         let v = UIView()
         v.translatesAutoresizingMaskIntoConstraints = false
         v.clipsToBounds = true

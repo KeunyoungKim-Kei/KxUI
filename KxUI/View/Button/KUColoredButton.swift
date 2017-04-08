@@ -48,17 +48,17 @@ import UIKit
     override func setupView() {
         super.setupView()
         
-        if let backgroundImage = UIImage.from(color: buttonColor) {
+        if let backgroundImage = UIImage.generate(from: buttonColor) {
             setBackgroundImage(backgroundImage, for: .normal)
         }
         
         setBackgroundImage(nil, for: .highlighted)
-        if let color = highlightedColor, let img = UIImage.from(color: color) {
+        if let color = highlightedColor, let img = UIImage.generate(from: color) {
             setBackgroundImage(img, for: .highlighted)
         }
         
         setBackgroundImage(nil, for: .disabled)
-        if let color = disabledColor, let img = UIImage.from(color: color) {
+        if let color = disabledColor, let img = UIImage.generate(from: color) {
             setBackgroundImage(img, for: .disabled)
         }
     }

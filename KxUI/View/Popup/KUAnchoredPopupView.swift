@@ -58,9 +58,17 @@ import UIKit
         }
     }
     
+    @IBInspectable open var triangleOffset: CGFloat = 0 {
+        didSet {
+            triangleViewCenterXConstraint?.constant = triangleOffset
+        }
+    }
+    
+    var triangleViewCenterXConstraint: NSLayoutConstraint? = nil
+    
     @IBInspectable open var popupColor: UIColor = UIColor.red {
         didSet {
-            subviews.map { $0.backgroundColor = popupColor }
+            _ = subviews.map { $0.backgroundColor = popupColor }
         }
     }
     
@@ -121,8 +129,7 @@ import UIKit
         
         self.alpha = 0.0
         view.addSubview(self)
-        
-        let views = ["popup": self, "anchor": anchor]
+                
         let centerX = NSLayoutConstraint(item: self, attribute: .centerX, relatedBy: .equal, toItem: anchor, attribute: .centerX, multiplier: 1.0, constant: centerOffset)
         view.addConstraint(centerX)
         
@@ -219,13 +226,19 @@ import UIKit
         triangleView.clipsToBounds = true
         triangleView.backgroundColor = popupColor
         
+        #if swift(>=3.1)
+        let rotation = CGAffineTransform(rotationAngle: CGFloat(Double.pi) / 4.0)
+        #else
         let rotation = CGAffineTransform(rotationAngle: CGFloat(M_PI) / 4.0)
+        #endif
+        
         triangleView.transform = rotation
         
         insertSubview(triangleView, belowSubview: v)
         
-        let center = NSLayoutConstraint(item: triangleView, attribute: .centerX, relatedBy: .equal, toItem: v, attribute: .centerX, multiplier: 1.0, constant: 0.0)
+        let center = NSLayoutConstraint(item: triangleView, attribute: .centerX, relatedBy: .equal, toItem: v, attribute: .centerX, multiplier: 1.0, constant: triangleOffset)
         addConstraint(center)
+        triangleViewCenterXConstraint = center
         
         let width = NSLayoutConstraint(item: triangleView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: anchorHeight)
         addConstraint(width)
