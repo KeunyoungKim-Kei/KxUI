@@ -60,7 +60,7 @@ import UIKit
     }()
     
     func setup() {
-        var views: [String: Any] = ["bottomLine": bottomLineView]
+        let views: [String: Any] = ["bottomLine": bottomLineView]
         
         addSubview(bottomLineView)
         
@@ -73,7 +73,9 @@ import UIKit
         bottomLineHeightConstraint = NSLayoutConstraint(item: bottomLineView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: bottomLineHeight)
         if let constraint = bottomLineHeightConstraint {
             addConstraint(constraint)
-        }        
+        }
+        
+        bottomLineView.backgroundColor = bottomLineColor
     }
     
     open override func prepareForInterfaceBuilder() {

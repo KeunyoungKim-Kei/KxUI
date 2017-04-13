@@ -103,7 +103,7 @@ open class KUHeaderBaseView: KUUnderlineView {
     override func setup() {
         super.setup()
         
-        var views: [String: Any] = ["leftContainerView": leftContainerView,
+        let views: [String: Any] = ["leftContainerView": leftContainerView,
                                     "centerContainerView": centerContainerView,
                                     "rightContainerView": rightContainerView]
         
@@ -111,7 +111,7 @@ open class KUHeaderBaseView: KUUnderlineView {
         addSubview(rightContainerView)
         addSubview(centerContainerView)
         
-        var horzConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|[leftContainerView][centerContainerView][rightContainerView]|", options: [], metrics: nil, views: views)
+        let horzConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|[leftContainerView][centerContainerView][rightContainerView]|", options: [], metrics: nil, views: views)
         //print(horzConstraints)
         addConstraints(horzConstraints)
         
