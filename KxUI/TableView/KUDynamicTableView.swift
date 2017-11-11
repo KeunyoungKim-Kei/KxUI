@@ -96,7 +96,7 @@ open class KUDynamicTableView: UITableView {
         }
     }
     
-    open func refresh() {
+   @objc open func refresh() {
         print("refresh")
         refreshHandler?(self)
         

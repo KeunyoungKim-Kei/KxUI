@@ -94,7 +94,7 @@ open class KUCommonViewController: UIViewController {
     // MARK: - Notification
     //
     
-    open func handle(notification: Notification) {
+    @objc open func handle(notification: Notification) {
         //print("HANDLE NOTIFICATION")
     }
     

@@ -61,7 +61,7 @@ public extension Notification.Name {
     
     open var leftAction: HeaderAction = HeaderAction.custom
     
-    open func performLeftAction() {
+    @objc open func performLeftAction() {
         guard isLeftActionEnabled && (leftImage != nil || leftTitle != nil) else { return }
         
         switch leftAction {
@@ -347,7 +347,7 @@ public extension Notification.Name {
    
     var centerButton: UIButton?
     
-    func performCenterAction() {
+    @objc func performCenterAction() {
         tapHandler?(.center)
         NotificationCenter.default.post(name: NSNotification.Name.KUHeaderCenterButtonTap, object: centerButton)
     }
@@ -421,7 +421,7 @@ public extension Notification.Name {
     
     open var rightAction = HeaderAction.custom
     
-    open func performRightAction() {
+    @objc open func performRightAction() {
         guard isRightActionEnabled && (rightImage != nil || rightTitle != nil) else { return }
         
         switch rightAction {

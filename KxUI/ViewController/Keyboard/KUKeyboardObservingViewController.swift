@@ -78,7 +78,7 @@ open class KUKeyboardObservingViewController: KUCommonViewController {
     //
     // MARK: - Tap Gesture
     //
-    func handleTapGuesture(_ tap: UITapGestureRecognizer) {
+    @objc func handleTapGuesture(_ tap: UITapGestureRecognizer) {
         findFirstResponderAndResign()
     }
     
