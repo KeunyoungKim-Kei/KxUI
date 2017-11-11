@@ -27,7 +27,12 @@ import Foundation
         
         public func estimatedHeight(_ width: CGFloat, font: UIFont) -> CGFloat {
             let s = NSString(string: self)
+         #if swift(>=3.3)
+            let attrs = [NSAttributedStringKey.font: font]
+         #else
             let attrs = [NSFontAttributeName: font]
+         #endif
+         
             let rect = s.boundingRect(with: CGSize(width: width, height: CGFloat.greatestFiniteMagnitude), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: attrs, context: nil)
             return ceil(rect.height)
         }
@@ -36,7 +41,11 @@ import Foundation
         
         public func estimatedWidth(_ font: UIFont) -> CGFloat {
             let s = NSString(string: self)
+         #if swift(>=3.3)
+            let attrs = [NSAttributedStringKey.font: font]
+         #else
             let attrs = [NSFontAttributeName: font]
+         #endif
             let rect = s.boundingRect(with: CGSize(width: 1000, height: CGFloat.greatestFiniteMagnitude), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: attrs, context: nil)
             return ceil(rect.width)
         }
@@ -47,7 +56,11 @@ import Foundation
         @available(OSX 10.11, *)
         public func estimatedHeight(_ width: CGFloat, font: NSFont) -> CGFloat {
             let s = NSString(string: self)
+         #if swift(>=3.3)
+            let attrs = [NSAttributedStringKey.font: font]
+         #else
             let attrs = [NSFontAttributeName: font]
+         #endif
             let rect = s.boundingRect(with: CGSize(width: width, height: CGFloat.greatestFiniteMagnitude), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: attrs, context: nil)
             return ceil(rect.height)
         }
@@ -55,7 +68,11 @@ import Foundation
         @available(OSX 10.11, *)
         public func estimatedWidth(_ font: NSFont) -> CGFloat {
             let s = NSString(string: self)
+         #if swift(>=3.3)
+            let attrs = [NSAttributedStringKey.font: font]
+         #else
             let attrs = [NSFontAttributeName: font]
+         #endif
             let rect = s.boundingRect(with: CGSize(width: 1000, height: CGFloat.greatestFiniteMagnitude), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: attrs, context: nil)
             return ceil(rect.width)
         }
