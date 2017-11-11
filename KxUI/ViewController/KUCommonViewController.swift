@@ -69,7 +69,7 @@ open class KUCommonViewController: UIViewController {
         }
     }
     
-    open dynamic func performTimerTask() {
+    @objc open dynamic func performTimerTask() {
         
     }
     

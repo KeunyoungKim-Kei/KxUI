@@ -153,7 +153,7 @@ import UIKit
         KUAnchoredPopupView.list.removeAll()
     }
 
-    open func dismiss(animated: Bool = true) {
+    @objc open func dismiss(animated: Bool = true) {
         if let index = KUAnchoredPopupView.list.index(of: self) {
             UIView.animate(withDuration: animated ? 0.3 : 0.0, animations: { [weak self] in
                 self?.alpha = 0.0
@@ -197,10 +197,18 @@ import UIKit
         
         
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.setContentCompressionResistancePriority(1000, for: .horizontal)
-        label.setContentCompressionResistancePriority(1000, for: .vertical)
-        label.setContentHuggingPriority(1000, for: .horizontal)
-        label.setContentHuggingPriority(1000, for: .vertical)
+      #if swift(>=4.0)
+         label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1000), for: .horizontal)
+         label.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 1000), for: .vertical)
+         label.setContentHuggingPriority(UILayoutPriority(rawValue: 1000), for: .horizontal)
+         label.setContentHuggingPriority(UILayoutPriority(rawValue: 1000), for: .vertical)
+      #else
+         label.setContentCompressionResistancePriority(1000, for: .horizontal)
+         label.setContentCompressionResistancePriority(1000, for: .vertical)
+         label.setContentHuggingPriority(1000, for: .horizontal)
+         label.setContentHuggingPriority(1000, for: .vertical)
+      #endif
+      
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 1
         label.textAlignment = .center
