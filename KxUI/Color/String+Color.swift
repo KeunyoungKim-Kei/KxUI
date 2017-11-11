@@ -24,17 +24,25 @@ import Foundation
 
 
 public extension String {
+   
+   private var len: Int {
+      #if swift(>=3.2)
+         return count
+      #else
+         return characters.count
+      #endif
+   }
 
     /// A Boolean value that indicates whether the receiver is hexadecimal color string
     public var isHexColorString: Bool {
-        if !hasPrefix("#") || characters.count < 4 || characters.count > 9 {
+        if !hasPrefix("#") || len < 4 || len > 9 {
             return false
         }
         
         do {
             let pattern = "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3}|[A-Fa-f0-9]{4}|[A-Fa-f0-9]{8})$"
             let regex = try NSRegularExpression(pattern: pattern, options: [])
-            let range = NSRange(location: 0, length: characters.count)
+            let range = NSRange(location: 0, length: len)
             return regex.numberOfMatches(in: self, options: [], range: range) == 1
         } catch {
             print(error)
@@ -47,8 +55,8 @@ public extension String {
     /// The red component of the hexadecimal color string
     public var redComponent: CGFloat? {
         guard isHexColorString else { return nil }
-        
-        switch characters.count {
+      
+        switch len {
         case 4, 5:
             return parse(subRange: 1...2)
         case 7, 9:
@@ -62,8 +70,8 @@ public extension String {
     /// The green component of the hexadecimal color string
     public var greenComponent: CGFloat? {
         guard isHexColorString else { return nil }
-        
-        switch characters.count {
+      
+        switch len {
         case 4, 5:
             return parse(subRange: 2...3)
         case 7, 9:
@@ -78,7 +86,7 @@ public extension String {
     public var blueComponent: CGFloat? {
         guard isHexColorString else { return nil }
         
-        switch characters.count {
+        switch len {
         case 4, 5:
             return parse(subRange: 3...4)
         case 7, 9:
@@ -93,7 +101,7 @@ public extension String {
     public var alphaComponent: CGFloat? {
         guard isHexColorString else { return nil }
         
-        switch characters.count {
+        switch len {
         case 5:
             return parse(subRange: 4...5)
         case 9:
@@ -137,9 +145,17 @@ public extension String {
     fileprivate func parse(subRange: CountableClosedRange<Int>) -> CGFloat? {
         let substringRange = Range<String.Index>(uncheckedBounds: (index(startIndex, offsetBy: subRange.lowerBound), index(startIndex, offsetBy: subRange.upperBound)))
         var value = substring(with: substringRange)
-        if value.characters.count == 1 {
+      
+      #if swift(>=3.2)
+         if value.count == 1 {
             value = value + value
-        }
+         }
+      #else
+         if value.characters.count == 1 {
+            value = value + value
+         }
+      #endif
+      
         
         var result: UInt32 = 0
         let scanner = Scanner(string: value)

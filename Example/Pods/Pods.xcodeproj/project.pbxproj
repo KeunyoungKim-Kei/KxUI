@@ -54,6 +54,9 @@
 		AA165F901E63520F00AD1D47 /* KUCommonNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA165F8F1E63520F00AD1D47 /* KUCommonNavigationController.swift */; };
 		AA2F6D901E616AD800612C8B /* UIColor+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F6D8F1E616AD800612C8B /* UIColor+Util.swift */; };
 		AA2F6DD31E61F30900612C8B /* KUViewControllerTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F6DD21E61F30900612C8B /* KUViewControllerTransitionManager.swift */; };
+		AA78DA241EA56ABE0083ECA9 /* String+Bound.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA78DA231EA56ABE0083ECA9 /* String+Bound.swift */; };
+		AA78DA271EA56B3F0083ECA9 /* KUDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA78DA261EA56B3F0083ECA9 /* KUDevice.swift */; };
+		AA78DA2A1EA56CA00083ECA9 /* KApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA78DA291EA56CA00083ECA9 /* KApp.swift */; };
 		AA951F441E7EC4BF00511902 /* KUButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA951F431E7EC4BF00511902 /* KUButton.swift */; };
 		AAFFF8D61E6E7395001F93E2 /* KUTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFFF8D51E6E7395001F93E2 /* KUTextField.swift */; };
 		AAFFF8D81E6E76F2001F93E2 /* KUNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFFF8D71E6E76F2001F93E2 /* KUNumberField.swift */; };
@@ -132,6 +135,9 @@
 		AA165F8F1E63520F00AD1D47 /* KUCommonNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KUCommonNavigationController.swift; sourceTree = "<group>"; };
 		AA2F6D8F1E616AD800612C8B /* UIColor+Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Util.swift"; sourceTree = "<group>"; };
 		AA2F6DD21E61F30900612C8B /* KUViewControllerTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KUViewControllerTransitionManager.swift; sourceTree = "<group>"; };
+		AA78DA231EA56ABE0083ECA9 /* String+Bound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Bound.swift"; sourceTree = "<group>"; };
+		AA78DA261EA56B3F0083ECA9 /* KUDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KUDevice.swift; sourceTree = "<group>"; };
+		AA78DA291EA56CA00083ECA9 /* KApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KApp.swift; sourceTree = "<group>"; };
 		AA951F431E7EC4BF00511902 /* KUButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KUButton.swift; sourceTree = "<group>"; };
 		AAD0265E647277595C21216CE6397C94 /* Pods-KxUI_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-KxUI_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		AAFFF8D51E6E7395001F93E2 /* KUTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KUTextField.swift; sourceTree = "<group>"; };
@@ -487,6 +493,30 @@
 			path = Transition;
 			sourceTree = "<group>";
 		};
+		AA78DA221EA56AAB0083ECA9 /* String */ = {
+			isa = PBXGroup;
+			children = (
+				AA78DA231EA56ABE0083ECA9 /* String+Bound.swift */,
+			);
+			path = String;
+			sourceTree = "<group>";
+		};
+		AA78DA251EA56B350083ECA9 /* Device */ = {
+			isa = PBXGroup;
+			children = (
+				AA78DA261EA56B3F0083ECA9 /* KUDevice.swift */,
+			);
+			path = Device;
+			sourceTree = "<group>";
+		};
+		AA78DA281EA56C970083ECA9 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				AA78DA291EA56CA00083ECA9 /* KApp.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -498,6 +528,9 @@
 		EB8AE2F60DBB1EC57E8851B1DA0E5FFB /* KxUI */ = {
 			isa = PBXGroup;
 			children = (
+				AA78DA281EA56C970083ECA9 /* Application */,
+				AA78DA251EA56B350083ECA9 /* Device */,
+				AA78DA221EA56AAB0083ECA9 /* String */,
 				1A142A1C1E5023EB006521A0 /* Image */,
 				1A054F151E4A918A005D2E4A /* Segue */,
 				1A377CC71E0821A300204619 /* Color */,
@@ -608,7 +641,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0910;
 				TargetAttributes = {
 					0826D4076C4D2A02E90165951E19FF1B = {
 						LastSwiftMigration = 0820;
@@ -645,6 +678,7 @@
 				AA2F6DD31E61F30900612C8B /* KUViewControllerTransitionManager.swift in Sources */,
 				1A142A1E1E502400006521A0 /* UIImage+Color.swift in Sources */,
 				1A1938A81E07C11500CC3929 /* KUUserDefaultsSwitch.swift in Sources */,
+				AA78DA241EA56ABE0083ECA9 /* String+Bound.swift in Sources */,
 				AA951F441E7EC4BF00511902 /* KUButton.swift in Sources */,
 				AAFFF8D81E6E76F2001F93E2 /* KUNumberField.swift in Sources */,
 				AA165F901E63520F00AD1D47 /* KUCommonNavigationController.swift in Sources */,
@@ -658,6 +692,8 @@
 				AA165F5B1E632D8600AD1D47 /* KUTableViewDataSource.swift in Sources */,
 				AA0149EF1E607F0F00DA2620 /* KUAnchoredPopupView.swift in Sources */,
 				1AB452FE1E09A064006D3792 /* UIColor+RGB.swift in Sources */,
+				AA78DA2A1EA56CA00083ECA9 /* KApp.swift in Sources */,
+				AA78DA271EA56B3F0083ECA9 /* KUDevice.swift in Sources */,
 				1A1938B61E07CD7000CC3929 /* KURoundButton.swift in Sources */,
 				AA2F6D901E616AD800612C8B /* UIColor+Util.swift in Sources */,
 				1A1938DA1E07ED8A00CC3929 /* KUTableViewCell.swift in Sources */,
@@ -722,6 +758,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BC0E1D44203BD4977F89967B4356A9E9 /* Pods-KxUI_Example.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -759,6 +796,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C7A6143F09ADAA4914A574A0B21510C5 /* Pods-KxUI_Example.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -870,19 +908,29 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"POD_CONFIGURATION_RELEASE=1",
 					"$(inherited)",
@@ -896,6 +944,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
 				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SYMROOT = "${SRCROOT}/../build";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -910,20 +959,30 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"POD_CONFIGURATION_DEBUG=1",

@@ -41,7 +41,7 @@ import UIKit
     
     
     func setupView() {
-        if let title = title(for: .normal), let label = titleLabel {
+        if let _ = title(for: .normal), let label = titleLabel {
             var frame = label.frame
             frame.origin.y = frame.maxY
             frame.size.height = 0.5

@@ -163,7 +163,7 @@ public extension Notification.Name {
             leftActionButton.imageEdgeInsets = UIEdgeInsets.zero
         }
         
-        if let title = leftTitle {
+        if let _ = leftTitle {
             leftActionButton.setTitle(leftTitle, for: .normal)
             
             var inset = UIEdgeInsets.zero
@@ -263,8 +263,9 @@ public extension Notification.Name {
         } else {
             headerImageView.isHidden = true
         }
-        
-        if let title = headerTitle, title.characters.count > 0 {
+      
+      #if swift(>=3.2)
+         if let title = headerTitle, title.count > 0 {
             titleLabel.isHidden = false
             
             titleLabel.text = headerTitle
@@ -272,9 +273,24 @@ public extension Notification.Name {
             
             headerTitleLabelBottomConstraint?.constant = -headerTitleLabelBottomMargin
             centerContainerView.layoutIfNeeded()
-        } else {
+         } else {
             titleLabel.isHidden = true
-        }
+         }
+      #else
+         if let title = headerTitle, title.characters.count > 0 {
+            titleLabel.isHidden = false
+         
+            titleLabel.text = headerTitle
+            titleLabel.textColor = headerTitleColor
+         
+            headerTitleLabelBottomConstraint?.constant = -headerTitleLabelBottomMargin
+            centerContainerView.layoutIfNeeded()
+         } else {
+            titleLabel.isHidden = true
+         }
+      #endif
+      
+      
     }
     
     
@@ -506,7 +522,7 @@ public extension Notification.Name {
             rightActionButton.imageEdgeInsets = UIEdgeInsets.zero
         }
         
-        if let title = rightTitle {
+        if let _ = rightTitle {
             rightActionButton.setTitle(rightTitle, for: .normal)
             
             var inset = UIEdgeInsets.zero

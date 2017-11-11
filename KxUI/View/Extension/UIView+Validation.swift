@@ -24,9 +24,16 @@ import UIKit
 
 public extension UITextField {
     public func validate(minLength min: Int = 1, maxLength max: Int = Int.max) -> String? {
-        guard let value = self.text, value.characters.count >= min && value.characters.count <= max else {
+      #if swift(>=3.2)
+         guard let value = self.text, value.count >= min && value.count <= max else {
             return nil
-        }
+         }
+      #else
+         guard let value = self.text, value.characters.count >= min && value.characters.count <= max else {
+            return nil
+         }
+      #endif
+      
         
         return value
     }
@@ -34,9 +41,16 @@ public extension UITextField {
 
 public extension UITextView {
     public func validate(minLength min: Int = 1, maxLength max: Int = Int.max) -> String? {
-        guard let value = self.text, value.characters.count >= min && value.characters.count <= max else {
+      #if swift(>=3.2)
+         guard let value = self.text, value.count >= min && value.count <= max else {
             return nil
-        }
+         }
+      #else
+         guard let value = self.text, value.characters.count >= min && value.characters.count <= max else {
+            return nil
+         }
+      #endif
+      
         
         return value
     }

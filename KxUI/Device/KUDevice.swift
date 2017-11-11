@@ -20,23 +20,52 @@
 //  THE SOFTWARE.
 //
 
-import UIKit
+import Foundation
 
-public extension UIColor {
-    public var isDark: Bool {
-        var brightness: CGFloat = 0
-        
-        if let colorSpace = self.cgColor.colorSpace {
-            switch colorSpace.model {
-            case .rgb:
-                if let r = normalizedRedComponent, let g = normalizedGreenComponent, let b = normalizedBlueComponent {
-                    brightness = ((r * 299) + (g * 587) + (b + 114)) / 1000
-                }
-            default:
-                self.getWhite(&brightness, alpha: nil)
+import CoreTelephony
+
+public struct KUDevice {
+    public static var mainScreenWidth: CGFloat {
+        return UIScreen.main.bounds.width
+    }
+    
+    
+    
+    public static var mainScreenHeight: CGFloat {
+        return UIScreen.main.bounds.height
+    }
+    
+    
+    
+    public static var mainScreenBounds: CGRect {
+        return UIScreen.main.bounds
+    }
+    
+    
+    
+    public static func canPhoneCall() -> Bool {
+        var canCall = false
+        let url = URL(string: "tel://")
+        if UIApplication.shared.canOpenURL(url!) {
+            let info = CTTelephonyNetworkInfo()
+            guard let carrier = info.subscriberCellularProvider else {
+                return canCall
             }
+            
+            let mnc = carrier.mobileNetworkCode
+         
+         #if swift(>=3.2)
+            if let mnc = mnc, mnc.count > 0 {
+               canCall = true
+            }
+         #else
+            if let mnc = mnc, mnc.characters.count > 0 {
+               canCall = true
+            }
+         #endif
+         
         }
-                
-        return brightness < 0.5
+        
+        return canCall
     }
 }

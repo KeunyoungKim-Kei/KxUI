@@ -65,13 +65,12 @@ open class KUCommonViewController: UIViewController {
         timer = DispatchSource.makeTimerSource(flags: [], queue: queue)
         timer?.scheduleRepeating(deadline: .now(), interval: timerInterval)
         timer?.setEventHandler { [weak self] in
-            print("=====================================")
             self?.performTimerTask()
         }
     }
     
     open dynamic func performTimerTask() {
-        print("111")
+        
     }
     
     /**
@@ -115,7 +114,7 @@ open class KUCommonViewController: UIViewController {
         register(names: [.KUHeaderLeftButtonTap, .KUHeaderCenterButtonTap, .KUHeaderRightButtonTap])
         
         if timerEnabled {
-            print("===================== START TIMER")
+            //print("===================== START TIMER")
             startTimer()
         }
     }
