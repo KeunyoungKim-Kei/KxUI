@@ -63,7 +63,12 @@ open class KUCommonViewController: UIViewController {
      */
     func setupTimer(on queue: DispatchQueue = DispatchQueue.main) {
         timer = DispatchSource.makeTimerSource(flags: [], queue: queue)
+      #if swift(>=4.0)
+         timer?.schedule(deadline: .now(), repeating: timerInterval)
+      #else
         timer?.scheduleRepeating(deadline: .now(), interval: timerInterval)
+      #endif
+      
         timer?.setEventHandler { [weak self] in
             self?.performTimerTask()
         }

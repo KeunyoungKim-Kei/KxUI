@@ -32,7 +32,12 @@ open class KUCollectionViewCell<T>: UICollectionViewCell {
     open class var cellIdentifier: String {
         let fq = NSStringFromClass(self.classForCoder())
         if let range = fq.range(of: ".", options: .backwards) {
+         #if swift(>=4.0)
+            return String(fq[fq.index(after: range.lowerBound)...])
+         #else
             return fq.substring(from: fq.index(after: range.lowerBound))
+         #endif
+         
         }
         
         return fq

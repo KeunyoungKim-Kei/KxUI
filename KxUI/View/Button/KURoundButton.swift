@@ -21,7 +21,7 @@
 //
 
 @IBDesignable open class KURoundButton: UIButton {
-    @IBInspectable open var cornerRadius: CGFloat = 3 {
+    @IBInspectable open var cornerRadius: CGFloat = 0 {
         didSet {
             setupView()
         }

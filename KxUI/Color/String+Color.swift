@@ -144,7 +144,13 @@ public extension String {
     /// - Returns: The floating-point value, or nil if the content of specified range cannot be parsed
     fileprivate func parse(subRange: CountableClosedRange<Int>) -> CGFloat? {
         let substringRange = Range<String.Index>(uncheckedBounds: (index(startIndex, offsetBy: subRange.lowerBound), index(startIndex, offsetBy: subRange.upperBound)))
-        var value = substring(with: substringRange)
+      
+      #if swift(>=4.0)
+        var value = String(self[substringRange])
+      #else
+         var value = substring(with: substringRange)
+      #endif
+      
       
       #if swift(>=3.2)
          if value.count == 1 {

@@ -23,44 +23,58 @@
 import UIKit
 
 @IBDesignable open class KUColoredButton: KURoundButton {
-
-    @IBInspectable
-    open var buttonColor: UIColor = UIColor.Apple.blue {
-        didSet {
-            setupView()
-        }
-    }
-    
-    @IBInspectable
-    open var highlightedColor: UIColor?  {
-        didSet {
-            setupView()
-        }
-    }
-    
-    @IBInspectable
-    open var disabledColor: UIColor?  {
-        didSet {
-            setupView()
-        }
-    }
-    
-    override func setupView() {
-        super.setupView()
-        
-        if let backgroundImage = UIImage.generate(from: buttonColor) {
-            setBackgroundImage(backgroundImage, for: .normal)
-        }
-        
-        setBackgroundImage(nil, for: .highlighted)
-        if let color = highlightedColor, let img = UIImage.generate(from: color) {
-            setBackgroundImage(img, for: .highlighted)
-        }
-        
-        setBackgroundImage(nil, for: .disabled)
-        if let color = disabledColor, let img = UIImage.generate(from: color) {
-            setBackgroundImage(img, for: .disabled)
-        }
-    }
-
+   
+   @IBInspectable
+   open dynamic var buttonColor: UIColor {
+      get { return _buttonColor }
+      set { _buttonColor = newValue }
+   }
+   
+   private var _buttonColor: UIColor = UIColor.Apple.blue {
+      didSet {
+         setupView()
+      }
+   }
+   
+   @IBInspectable
+   open dynamic var highlightedColor: UIColor?  {
+      get { return _highlightedColor }
+      set { _highlightedColor = newValue }
+   }
+   
+   private var _highlightedColor: UIColor?  {
+      didSet {
+         setupView()
+      }
+   }
+   
+   @IBInspectable
+   open dynamic var disabledColor: UIColor?  {
+      get { return _disabledColor }
+      set { _disabledColor = newValue }
+   }
+   
+   private var _disabledColor: UIColor?  {
+      didSet {
+         setupView()
+      }
+   }
+   
+   override func setupView() {
+      super.setupView()
+      
+      if let backgroundImage = UIImage.generate(from: _buttonColor) {
+         setBackgroundImage(backgroundImage, for: .normal)
+      }
+      
+      setBackgroundImage(nil, for: .highlighted)
+      if let color = _highlightedColor, let img = UIImage.generate(from: color) {
+         setBackgroundImage(img, for: .highlighted)
+      }
+      
+      setBackgroundImage(nil, for: .disabled)
+      if let color = _disabledColor, let img = UIImage.generate(from: color) {
+         setBackgroundImage(img, for: .disabled)
+      }
+   }
 }
