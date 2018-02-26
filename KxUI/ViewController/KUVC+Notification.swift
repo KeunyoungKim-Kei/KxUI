@@ -22,73 +22,77 @@
 
 
 public extension KUCommonViewController {
-    public func post(rawNotificationName name: String, object: Any? = nil) {
-        post(name: Notification.Name(rawValue: name), object: object)
-    }
-    
-    public func post(name: Notification.Name, object: Any? = nil) {
-        NotificationCenter.default.post(name: name, object: object)
-    }
-    
-    
-    
-    public func register(rawNotificationName name: String) {
-        register(name: NSNotification.Name(rawValue: name))
-    }
-    
-    
-    public func register(name: Notification.Name) {
-        NotificationCenter.default.addObserver(self, selector: #selector(handle(notification:)), name: name, object: nil)
-        notificationNames.append(name)
-    }
-    
-    
-    
-    
-    public func register(rawNotificationNames names: [String]) {
-        for name in names {
-            register(rawNotificationName: name)
-        }
-    }
-    
-    public func register(names: [NSNotification.Name]) {
-        for name in names {
-            register(name: name)
-        }
-    }
-    
-    
-    
-    public func deregister(rawNotificationName name: String) {
-        deregister(name: NSNotification.Name(rawValue: name))
-    }
-    
-    public func deregister(name: Notification.Name) {
-        NotificationCenter.default.removeObserver(self, name: name, object: nil)
-        
-        if let index = notificationNames.index(of: name) {
-            notificationNames.remove(at: index)
-        }
-    }
-    
-    
-    
-    public func deregister(rawNotificationNames names: [String]) {
-        for name in names {
-            deregister(rawNotificationName: name)
-        }
-    }
-    
-    public func deregister(names: [NSNotification.Name]) {
-        for name in names {
-            deregister(name: name)
-        }
-    }
-    
-    
-    
-    public func deregisterAllNotifications() {
-        notificationNames.removeAll()
-        NotificationCenter.default.removeObserver(self)
-    }
+   public func post(rawNotificationName name: String, object: Any? = nil) {
+      post(name: Notification.Name(rawValue: name), object: object)
+   }
+   
+   public func post(name: Notification.Name, object: Any? = nil) {
+      NotificationCenter.default.post(name: name, object: object)
+   }
+   
+   
+   
+   public func register(rawNotificationName name: String) {
+      register(name: NSNotification.Name(rawValue: name))
+   }
+   
+   
+   public func register(name: Notification.Name) {
+      NotificationCenter.default.addObserver(self, selector: #selector(handle(notification:)), name: name, object: nil)
+      notificationNames.append(name)
+   }
+   
+   
+   
+   
+   public func register(rawNotificationNames names: [String]) {
+      for name in names {
+         register(rawNotificationName: name)
+      }
+   }
+   
+   public func register(names: [NSNotification.Name]) {
+      for name in names {
+         register(name: name)
+      }
+   }
+   
+   
+   
+   public func deregister(rawNotificationName name: String) {
+      deregister(name: NSNotification.Name(rawValue: name))
+   }
+   
+   public func deregister(name: Notification.Name) {
+      NotificationCenter.default.removeObserver(self, name: name, object: nil)
+      
+      if let index = notificationNames.index(of: name) {
+         notificationNames.remove(at: index)
+      }
+   }
+   
+   
+   
+   public func deregister(rawNotificationNames names: [String]) {
+      for name in names {
+         deregister(rawNotificationName: name)
+      }
+   }
+   
+   public func deregister(names: [NSNotification.Name]) {
+      for name in names {
+         deregister(name: name)
+      }
+   }
+   
+   
+   
+   public func deregisterAllNotifications() {
+      if #available(iOS 9.0, *) {
+         
+      } else {
+         notificationNames.removeAll()
+         NotificationCenter.default.removeObserver(self)
+      }
+   }
 }
