@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'KxUI'
-  s.version          = '0.3.6'
+  s.version          = '0.4.0'
   s.summary          = 'KxUI - UI Framework'
 
 # This description is used to generate tags and improve search results.

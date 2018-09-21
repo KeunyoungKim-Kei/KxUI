@@ -27,7 +27,9 @@ import Foundation
         
         public func estimatedHeight(_ width: CGFloat, font: UIFont) -> CGFloat {
             let s = NSString(string: self)
-         #if swift(>=3.3)
+         #if swift(>=4.2)
+         let attrs = [NSAttributedString.Key.font: font]
+         #elseif swift(>=3.3)
             let attrs = [NSAttributedStringKey.font: font]
          #else
             let attrs = [NSFontAttributeName: font]
@@ -41,8 +43,10 @@ import Foundation
         
         public func estimatedWidth(_ font: UIFont) -> CGFloat {
             let s = NSString(string: self)
-         #if swift(>=3.3)
-            let attrs = [NSAttributedStringKey.font: font]
+         #if swift(>=4.2)
+         let attrs = [NSAttributedString.Key.font: font]
+         #elseif swift(>=3.3)
+         let attrs = [NSAttributedStringKey.font: font]
          #else
             let attrs = [NSFontAttributeName: font]
          #endif

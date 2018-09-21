@@ -21,17 +21,17 @@ final class ColorListTableViewCell: KUTableViewCell<ColorItem> {
             colorView.backgroundColor = data.color
             nameLabel.text            = data.name
             
-            let nsstr = NSString(string: data.rgb)
+            //let nsstr = NSString(string: data.rgb)
             let rgbAttrStr = NSMutableAttributedString(string: data.rgb)
-         #if swift(>=4.0)
-            rgbAttrStr.addAttributes([NSAttributedStringKey.foregroundColor: UIColor.Apple.red], range: nsstr.range(of: "R"))
-            rgbAttrStr.addAttributes([NSAttributedStringKey.foregroundColor: UIColor.Apple.green], range: nsstr.range(of: "G"))
-            rgbAttrStr.addAttributes([NSAttributedStringKey.foregroundColor: UIColor.Apple.blue], range: nsstr.range(of: "B"))
-         #else
-            rgbAttrStr.addAttributes([NSForegroundColorAttributeName: UIColor.Apple.red], range: nsstr.range(of: "R"))
-            rgbAttrStr.addAttributes([NSForegroundColorAttributeName: UIColor.Apple.green], range: nsstr.range(of: "G"))
-            rgbAttrStr.addAttributes([NSForegroundColorAttributeName: UIColor.Apple.blue], range: nsstr.range(of: "B"))
-         #endif
+//         #if swift(>=4.0)
+//            rgbAttrStr.addAttributes([NSAttributedStringKey.foregroundColor: UIColor.Apple.red], range: nsstr.range(of: "R"))
+//            rgbAttrStr.addAttributes([NSAttributedStringKey.foregroundColor: UIColor.Apple.green], range: nsstr.range(of: "G"))
+//            rgbAttrStr.addAttributes([NSAttributedStringKey.foregroundColor: UIColor.Apple.blue], range: nsstr.range(of: "B"))
+//         #else
+//            rgbAttrStr.addAttributes([NSForegroundColorAttributeName: UIColor.Apple.red], range: nsstr.range(of: "R"))
+//            rgbAttrStr.addAttributes([NSForegroundColorAttributeName: UIColor.Apple.green], range: nsstr.range(of: "G"))
+//            rgbAttrStr.addAttributes([NSForegroundColorAttributeName: UIColor.Apple.blue], range: nsstr.range(of: "B"))
+//         #endif
          
             
             rgbLabel.attributedText = rgbAttrStr

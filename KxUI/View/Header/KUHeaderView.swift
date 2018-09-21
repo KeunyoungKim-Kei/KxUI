@@ -575,8 +575,12 @@ public extension Notification.Name {
         setupLeftContainer()
         setupCenterContainer()
         setupRightContainer()
-        
-        bringSubview(toFront: bottomLineView)
+      
+      #if swift(>=4.2)
+      bringSubviewToFront(bottomLineView)
+      #else
+      bringSubview(toFront: bottomLineView)
+      #endif      
     }
     
     open override func prepareForInterfaceBuilder() {

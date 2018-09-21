@@ -141,7 +141,7 @@ import UIKit
         }
     }
     
-    open static func dismissAll(animated: Bool = true) {
+    public static func dismissAll(animated: Bool = true) {
         for view in KUAnchoredPopupView.list {
             UIView.animate(withDuration: animated ? 0.3 : 0.0, animations: {
                 view.alpha = 0.0

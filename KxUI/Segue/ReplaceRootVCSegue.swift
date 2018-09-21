@@ -26,15 +26,26 @@ open class ReplaceRootVCSegue: UIStoryboardSegue {
     
     @IBInspectable
     open var duration: TimeInterval = 0.3
-    
+   
+   
     override open func perform() {
         guard let appDelegate = UIApplication.shared.delegate, let window = appDelegate.window else { return }
         window?.rootViewController?.view.removeFromSuperview()
-        window?.rootViewController?.removeFromParentViewController()
+      #if swift(>=4.2)
+      window?.rootViewController?.removeFromParent()
+      #else
+      window?.rootViewController?.removeFromParentViewController()
+      #endif
+      
         window?.rootViewController = destination
         
         if let mainWindow = window {
-            UIView.transition(with: mainWindow, duration: duration, options: UIViewAnimationOptions.transitionCrossDissolve, animations: nil, completion:nil)
+         #if swift(>=4.2)
+         UIView.transition(with: mainWindow, duration: duration, options: UIView.AnimationOptions.transitionCrossDissolve, animations: nil, completion:nil)
+         #else
+         UIView.transition(with: mainWindow, duration: duration, options: UIViewAnimationOptions.transitionCrossDissolve, animations: nil, completion:nil)
+         #endif
+         
         }
     }
 }

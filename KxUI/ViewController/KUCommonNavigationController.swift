@@ -35,13 +35,26 @@ class KUCommonNavigationController: UINavigationController {
     }
     
 
-    override var childViewControllerForStatusBarStyle: UIViewController? {
-        return viewControllers.last
-    }
+   #if swift(>=4.2)
+   override var childForStatusBarStyle: UIViewController? {
+      return viewControllers.last
+   }
+   
+   override var childForStatusBarHidden: UIViewController? {
+      return viewControllers.last
+   }
+   #else
+   override var childViewControllerForStatusBarStyle: UIViewController? {
+      return viewControllers.last
+   }
+   
+   override var childViewControllerForStatusBarHidden: UIViewController? {
+      return viewControllers.last
+   }
+   #endif
+   
     
-    override var childViewControllerForStatusBarHidden: UIViewController? {
-        return viewControllers.last
-    }
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()

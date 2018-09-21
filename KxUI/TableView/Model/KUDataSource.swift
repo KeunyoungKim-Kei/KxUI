@@ -75,7 +75,7 @@ public struct KUSectionData<T> {
 
 open class KUDataSource<T: ApiDictionaryParsable>: DataSourceCompatible {
     /// 데이터 요청 큐
-    open let fetchQueue = DispatchQueue.global(qos: .userInitiated)
+    public let fetchQueue = DispatchQueue.global(qos: .userInitiated)
     
     /// 데이터 요청 형식
     open var fetchType = DataFetchType.refresh

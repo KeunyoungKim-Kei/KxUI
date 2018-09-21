@@ -33,7 +33,7 @@ public extension UIViewController {
         DispatchQueue.main.async { [weak self] in
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
             
-            let action = UIAlertAction(title: confirmTitle, style: UIAlertActionStyle.default, handler: { action in positiveHandler?() })
+            let action = UIAlertAction(title: confirmTitle, style: .default, handler: { action in positiveHandler?() })
             alert.addAction(action)
             
             self?.present(alert, animated: true, completion: nil)

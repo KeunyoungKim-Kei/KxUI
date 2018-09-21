@@ -55,22 +55,16 @@
         //
         // MARK: - Life Cycle
         //
-        open func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-//            isFirstLaunchAfterInstall = KFKeyValueStore.bool(forKey: K_FIRST_LAUNCHING_AFTER_INSTALL, defaultValue: true)
-//            
-//            if isFirstLaunchAfterInstall {
-//                KFKeyValueStore.saveFalse(forKey: K_FIRST_LAUNCHING_AFTER_INSTALL)
-//                print("K_FIRST_LAUNCHING_AFTER_INSTALL")
-//                secondsFromLastLaunch = 0
-//            } else {
-//                print("REGULAR LAUNCH")
-//                secondsFromLastLaunch = (Today.now as NSDate) - lastLaunchDate
-//            }
-//            
-//            
-//            lastLaunchDate = Today.now as NSDate
-            return true
-        }
+      #if swift(>=4.2)
+      open func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+         return true
+      }
+      #else
+      open func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+         return true
+      }
+      #endif
+      
         
         
         
@@ -116,35 +110,35 @@
         //
         // MARK: - Commonly Used Directories
         //
-        open static var documentsDirectoryURL: URL {
+        public static var documentsDirectoryURL: URL {
             let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
             return urls.last!
         }
         
         
         
-        open static var libraryDirectoryURL: URL {
+        public static var libraryDirectoryURL: URL {
             let urls = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)
             return urls.last!
         }
         
         
         
-        open static var applicationSupportDirectoryURL: URL {
+        public static var applicationSupportDirectoryURL: URL {
             let urls = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)
             return urls.last!
         }
         
         
         
-        open static var cacheDirectoryURL: URL {
+        public static var cacheDirectoryURL: URL {
             let urls = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)
             return urls.last!
         }
         
         
         
-        open static var temporaryDirectoryURL: URL {
+        public static var temporaryDirectoryURL: URL {
             return URL(fileURLWithPath: NSTemporaryDirectory())
         }
         
@@ -181,7 +175,7 @@
             assert(self.modelName != nil, "EMPTY CORE DATA MODEL NAME: use setupCoreData()")
             
             var coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-            let url = KApp.documentsDirectoryURL.appendingPathComponent("\(self.modelName).sqlite")
+            let url = KApp.documentsDirectoryURL.appendingPathComponent("\(self.modelName ?? "").sqlite")
             do {
                 var options: [AnyHashable: Any]? = nil
                 if self.useLightweightMigration {
@@ -221,11 +215,19 @@
         }
         
         open func moveToAppSetting() {
-            if let url = URL(string: UIApplicationOpenSettingsURLString) {
-                if UIApplication.shared.canOpenURL(url) {
-                    UIApplication.shared.openURL(url)
-                }
+         #if swift(>=4.2)
+         if let url = URL(string: UIApplication.openSettingsURLString) {
+            if UIApplication.shared.canOpenURL(url) {
+               UIApplication.shared.openURL(url)
             }
+         }
+         #else
+         if let url = URL(string: UIApplicationOpenSettingsURLString) {
+            if UIApplication.shared.canOpenURL(url) {
+               UIApplication.shared.openURL(url)
+            }
+         }
+         #endif
         }
     }
 #endif

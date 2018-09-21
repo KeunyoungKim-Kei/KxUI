@@ -50,10 +50,19 @@
     func setup() {
         let height = bounds.height
         leftView = UIView(frame: CGRect(x: 0, y: 0, width: leftPadding, height: height))
-        leftViewMode = UITextFieldViewMode.always
+      #if swift(>=4.2)
+      leftViewMode = UITextField.ViewMode.always
+      #else
+      leftViewMode = UITextFieldViewMode.always
+      #endif
+      
         
         rightView = UIView(frame: CGRect(x: 0, y: 0, width: rightPadding, height: height))
-        rightViewMode = UITextFieldViewMode.always
+      #if swift(>=4.2)
+      rightViewMode = UITextField.ViewMode.always
+      #else
+      rightViewMode = UITextFieldViewMode.always
+      #endif
         
         layer.cornerRadius = cornerRadius
         clipsToBounds = true
