@@ -23,7 +23,7 @@
 import UIKit
 
 public extension UIColor {
-    public var isDark: Bool {
+    var isDark: Bool {
         var brightness: CGFloat = 0
         
         if let colorSpace = self.cgColor.colorSpace {

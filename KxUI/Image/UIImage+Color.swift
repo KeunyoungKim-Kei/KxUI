@@ -23,12 +23,12 @@
 import UIKit
 
 public extension UIImage {
-    @available(*, deprecated: 0.2.6, message: "Use generate(from:size:) insted.")
-    public class func from(color: UIColor, size: CGSize = CGSize(width: 1.0, height: 1.0)) -> UIImage? {        
+    @available(*, deprecated, message: "Use generate(from:size:) insted.")
+    class func from(color: UIColor, size: CGSize = CGSize(width: 1.0, height: 1.0)) -> UIImage? {
         return generate(from: color, size: size)
     }
     
-    public class func generate(from color: UIColor, size: CGSize = CGSize(width: 1.0, height: 1.0)) -> UIImage? {
+    class func generate(from color: UIColor, size: CGSize = CGSize(width: 1.0, height: 1.0)) -> UIImage? {
         let scale = UIScreen.main.scale
         let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         UIGraphicsBeginImageContextWithOptions(rect.size, true, scale)
@@ -42,7 +42,7 @@ public extension UIImage {
         return image
     }
     
-    public class func from(color: UIColor, radius: CGFloat) -> UIImage? {
+    class func from(color: UIColor, radius: CGFloat) -> UIImage? {
         let scale = UIScreen.main.scale
         let rect = CGRect(x: 0, y: 0, width: radius * 2, height: radius * 2)
         UIGraphicsBeginImageContextWithOptions(rect.size, false, scale)

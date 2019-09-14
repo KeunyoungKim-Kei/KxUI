@@ -21,12 +21,12 @@
 //
 
 public extension UIView {
-    public func makeCircleView() {
+    func makeCircleView() {
         layer.cornerRadius = bounds.width.half
         clipsToBounds = true
     }
     
-    public func apply(cornerRadius radius: CGFloat = 5.0, borderWidth width: CGFloat = 0, borderColor color: UIColor = UIColor.clear, clipsToBounds clip: Bool = true) {
+    func apply(cornerRadius radius: CGFloat = 5.0, borderWidth width: CGFloat = 0, borderColor color: UIColor = UIColor.clear, clipsToBounds clip: Bool = true) {
         layer.cornerRadius = radius
         layer.borderWidth = width
         layer.borderColor = color.cgColor

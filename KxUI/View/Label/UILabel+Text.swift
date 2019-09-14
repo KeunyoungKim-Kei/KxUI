@@ -21,7 +21,7 @@
 //
 
 public extension UILabel {
-    public var textWidth: CGFloat {
+    var textWidth: CGFloat {
         let box = textRect(forBounds: bounds, limitedToNumberOfLines: numberOfLines)
         return box.width
     }

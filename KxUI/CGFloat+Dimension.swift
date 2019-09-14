@@ -23,7 +23,7 @@
 import Foundation
 
 public extension CGFloat {
-    public var half: CGFloat {
+    var half: CGFloat {
         if self != 0.0 {
             return self / 2.0
         }

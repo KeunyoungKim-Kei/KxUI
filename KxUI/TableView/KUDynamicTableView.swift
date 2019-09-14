@@ -21,7 +21,7 @@
 //
 
 public extension Notification.Name {
-    public static let TableViewDidRefresh = Notification.Name(rawValue: "KUDynamicTableViewDidRefresh")
+    static let TableViewDidRefresh = Notification.Name(rawValue: "KUDynamicTableViewDidRefresh")
 }
 
 open class KUDynamicTableView: UITableView {

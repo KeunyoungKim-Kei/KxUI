@@ -28,7 +28,7 @@ public extension UIColor {
      
      - Parameter list: RGBA component values
     */
-    public convenience init?(normalizedRgbaComponents list: [Double]) {
+    convenience init?(normalizedRgbaComponents list: [Double]) {
         guard list.count == 4 else {
             return nil
         }
@@ -51,7 +51,7 @@ public extension UIColor {
     
      - Parameter list: 
     */
-    public convenience init?(normalizedRgbComponents list: [Double]) {
+    convenience init?(normalizedRgbComponents list: [Double]) {
         guard list.count == 3 else {
             return nil
         }
@@ -66,7 +66,7 @@ public extension UIColor {
     
      - Parameter list: 
     */
-    public convenience init?(rgbaComponents list: [Int]) {
+    convenience init?(rgbaComponents list: [Int]) {
         guard list.count == 4 else {
             return nil
         }
@@ -80,7 +80,7 @@ public extension UIColor {
     
      - Parameter list: 
     */
-    public convenience init?(rgbComponents list: [Int]) {
+    convenience init?(rgbComponents list: [Int]) {
         guard list.count == 3 else {
             return nil
         }
@@ -90,12 +90,12 @@ public extension UIColor {
         self.init(normalizedRgbComponents: list)
     }
     
-    public convenience init?(whiteComponent: Int) {
+    convenience init?(whiteComponent: Int) {
         self.init(rgbComponents: [whiteComponent, whiteComponent, whiteComponent])
     }
     
     /// 
-    public var normalizedRGBAComponent: (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat)? {
+    var normalizedRGBAComponent: (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat)? {
         var normalizedR: CGFloat = 0
         var normalizedG: CGFloat = 0
         var normalizedB: CGFloat = 0
@@ -108,7 +108,7 @@ public extension UIColor {
         return nil
     }
     
-    public var rgbaComponent: (r: Int, g: Int, b: Int, a: Int)? {
+    var rgbaComponent: (r: Int, g: Int, b: Int, a: Int)? {
         var normalizedR: CGFloat = 0
         var normalizedG: CGFloat = 0
         var normalizedB: CGFloat = 0
@@ -123,12 +123,12 @@ public extension UIColor {
     
     
     /// The red component of the hexadecimal color string
-    public var normalizedRedComponent: CGFloat? {
+    var normalizedRedComponent: CGFloat? {
         return normalizedRGBAComponent?.r
     }
     
     /// 
-    public var redComponent: CGFloat? {
+    var redComponent: CGFloat? {
         if let value = normalizedRGBAComponent?.r {
             return value * 255
         }
@@ -138,12 +138,12 @@ public extension UIColor {
     
     
     /// The green component of the hexadecimal color string
-    public var normalizedGreenComponent: CGFloat? {
+    var normalizedGreenComponent: CGFloat? {
         return normalizedRGBAComponent?.g
     }
     
     /// 
-    public var greenComponent: CGFloat? {
+    var greenComponent: CGFloat? {
         if let value = normalizedRGBAComponent?.g {
             return value * 255
         }
@@ -153,12 +153,12 @@ public extension UIColor {
     
     
     /// The blue component of the hexadecimal color string
-    public var normalizedBlueComponent: CGFloat? {
+    var normalizedBlueComponent: CGFloat? {
         return normalizedRGBAComponent?.b
     }
     
     /// 
-    public var blueComponent: CGFloat? {
+    var blueComponent: CGFloat? {
         if let value = normalizedRGBAComponent?.b {
             return value * 255
         }
@@ -168,12 +168,12 @@ public extension UIColor {
     
     
     /// The alpha component of the hexadecimal color string
-    public var normalizedAlphaComponent: CGFloat? {
+    var normalizedAlphaComponent: CGFloat? {
         return normalizedRGBAComponent?.a
     }
     
     /// 
-    public var alphaComponent: CGFloat? {
+    var alphaComponent: CGFloat? {
         if let value = normalizedRGBAComponent?.a {
             return value * 255
         }
@@ -183,13 +183,13 @@ public extension UIColor {
     
  
     /// 
-    public var rgbString: String {
+    var rgbString: String {
         return toRGBString(includeAlpha: false)
     }
     
     
     /// 
-    public var rgbaString: String {
+    var rgbaString: String {
         return toRGBString(includeAlpha: true)
     }
     
@@ -198,7 +198,7 @@ public extension UIColor {
      - Parameter includeAlpha: 
      - Returns: 문자열
     */
-    public func toRGBString(includeAlpha: Bool) -> String {
+    func toRGBString(includeAlpha: Bool) -> String {
         var normalizedR: CGFloat = 0
         var normalizedG: CGFloat = 0
         var normalizedB: CGFloat = 0

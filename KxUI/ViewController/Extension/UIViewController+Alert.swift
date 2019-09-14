@@ -29,7 +29,7 @@ public extension UIViewController {
      
      - Parameter message: 경고 메시지
      */
-    public func showInfoAlert(title: String? = nil, message: String, confirmTitle: String = NSLocalizedString("확인", comment: "확인"), positiveHandler: KUAlertReponseHandler? = nil ) {
+    func showInfoAlert(title: String? = nil, message: String, confirmTitle: String = NSLocalizedString("확인", comment: "확인"), positiveHandler: KUAlertReponseHandler? = nil ) {
         DispatchQueue.main.async { [weak self] in
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
             
@@ -40,7 +40,7 @@ public extension UIViewController {
         }
     }
     
-    public func showPasswordAlert(positiveHandler: AlertInputCompletion?, negativeHandler: AlertInputCompletion?) {
+    func showPasswordAlert(positiveHandler: AlertInputCompletion?, negativeHandler: AlertInputCompletion?) {
         DispatchQueue.main.async { [weak self] in
             let title = NSLocalizedString("비밀번호 확인", comment: "비밀번호 확인")
             let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
@@ -76,7 +76,7 @@ public extension UIViewController {
      - Parameter positiveHandler: 긍정 응답 처리 클로저
      - Parameter negativeHandler: 부정 응답 처리 클로저
      */
-    public func showConfirmAlert(message: String, positiveButtonTitle: String = NSLocalizedString("확인", comment: "확인"), positiveHandler: KUAlertReponseHandler?, negativeButtonTitle: String = NSLocalizedString("취소", comment: "취소"), negativeHandler: KUAlertReponseHandler?) {
+     func showConfirmAlert(message: String, positiveButtonTitle: String = NSLocalizedString("확인", comment: "확인"), positiveHandler: KUAlertReponseHandler?, negativeButtonTitle: String = NSLocalizedString("취소", comment: "취소"), negativeHandler: KUAlertReponseHandler?) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         
         let confirmAction = UIAlertAction(title: positiveButtonTitle, style: .default, handler: { alert in

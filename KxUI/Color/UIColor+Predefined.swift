@@ -22,7 +22,7 @@
 
 //  Reference URL : https://developer.apple.com/ios/human-interface-guidelines/visual-design/color/
 public extension UIColor {
-    public struct Apple {
+    struct Apple {
         public static let red      = UIColor(red: 255.0/255.0, green: 59.0/255.0, blue: 48.0/255.0, alpha: 1.0)
         public static let orange   = UIColor(red: 255.0/255.0, green: 149.0/255.0, blue: 0.0/255.0, alpha: 1.0)
         public static let yellow   = UIColor(red: 255.0/255.0, green: 204.0/255.0, blue: 0.0/255.0, alpha: 1.0)
@@ -37,7 +37,7 @@ public extension UIColor {
 
 //  Refecence URL : https://material.io/guidelines/style/color.html#color-color-palette
 public extension UIColor {
-    public struct MaterialRed {
+    struct MaterialRed {
         public static let primary = UIColor(hexString: "#F44336")
         public static let i50     = UIColor(hexString: "#FFEBEE")
         public static let i100    = UIColor(hexString: "#FFCDD2")
@@ -55,7 +55,7 @@ public extension UIColor {
         public static let a700    = UIColor(hexString: "#D50000")
     }
     
-    public struct MaterialPink {
+    struct MaterialPink {
         public static let primary = UIColor(hexString: "#E91E63")
         public static let i50     = UIColor(hexString: "#FCE4EC")
         public static let i100    = UIColor(hexString: "#F8BBD0")
@@ -73,7 +73,7 @@ public extension UIColor {
         public static let a700    = UIColor(hexString: "#C51162")
     }
     
-    public struct MaterialPurple {
+    struct MaterialPurple {
         public static let primary = UIColor(hexString: "#9C27B0")
         public static let i50     = UIColor(hexString: "#F3E5F5")
         public static let i100    = UIColor(hexString: "#E1BEE7")
@@ -91,7 +91,7 @@ public extension UIColor {
         public static let a700    = UIColor(hexString: "#AA00FF")
     }
     
-    public struct MaterialDeepPurple {
+    struct MaterialDeepPurple {
         public static let primary = UIColor(hexString: "#EDE7F6")
         public static let i50     = UIColor(hexString: "#F3E5F5")
         public static let i100    = UIColor(hexString: "#D1C4E9")
@@ -109,7 +109,7 @@ public extension UIColor {
         public static let a700    = UIColor(hexString: "#6200EA")
     }
     
-    public struct MaterialIndigo {
+    struct MaterialIndigo {
         public static let primary = UIColor(hexString: "#3F51B5")
         public static let i50     = UIColor(hexString: "#E8EAF6")
         public static let i100    = UIColor(hexString: "#C5CAE9")
@@ -127,7 +127,7 @@ public extension UIColor {
         public static let a700    = UIColor(hexString: "#304FFE")
     }
     
-    public struct MaterialBlue {
+    struct MaterialBlue {
         public static let primary = UIColor(hexString: "#2196F3")
         public static let i50     = UIColor(hexString: "#E3F2FD")
         public static let i100    = UIColor(hexString: "#BBDEFB")
@@ -145,7 +145,7 @@ public extension UIColor {
         public static let a700    = UIColor(hexString: "#2962FF")
     }
     
-    public struct MaterialLightBlue {
+    struct MaterialLightBlue {
         public static let primary = UIColor(hexString: "#03A9F4")
         public static let i50     = UIColor(hexString: "#E1F5FE")
         public static let i100    = UIColor(hexString: "#B3E5FC")
@@ -163,7 +163,7 @@ public extension UIColor {
         public static let a700    = UIColor(hexString: "#0091EA")
     }
     
-    public struct MaterialCyan {
+    struct MaterialCyan {
         public static let primary = UIColor(hexString: "#00BCD4")
         public static let i50     = UIColor(hexString: "#E0F7FA")
         public static let i100    = UIColor(hexString: "#B2EBF2")
@@ -181,7 +181,7 @@ public extension UIColor {
         public static let a700    = UIColor(hexString: "#00B8D4")
     }
     
-    public struct MaterialTeal {
+    struct MaterialTeal {
         public static let primary = UIColor(hexString: "#009688")
         public static let i50     = UIColor(hexString: "#E0F2F1")
         public static let i100    = UIColor(hexString: "#B2DFDB")
@@ -199,7 +199,7 @@ public extension UIColor {
         public static let a700    = UIColor(hexString: "#00BFA5")
     }
     
-    public struct MaterialGreen {
+    struct MaterialGreen {
         public static let primary = UIColor(hexString: "#4CAF50")
         public static let i50     = UIColor(hexString: "#E8F5E9")
         public static let i100    = UIColor(hexString: "#C8E6C9")
@@ -217,7 +217,7 @@ public extension UIColor {
         public static let a700    = UIColor(hexString: "#00C853")
     }
     
-    public struct MaterialLightGreen {
+    struct MaterialLightGreen {
         public static let primary = UIColor(hexString: "#8BC34A")
         public static let i50     = UIColor(hexString: "#F1F8E9")
         public static let i100    = UIColor(hexString: "#DCEDC8")
@@ -235,7 +235,7 @@ public extension UIColor {
         public static let a700    = UIColor(hexString: "#64DD17")
     }
     
-    public struct MaterialLime {
+    struct MaterialLime {
         public static let primary = UIColor(hexString: "#CDDC39")
         public static let i50     = UIColor(hexString: "#F9FBE7")
         public static let i100    = UIColor(hexString: "#F0F4C3")
@@ -253,7 +253,7 @@ public extension UIColor {
         public static let a700    = UIColor(hexString: "#AEEA00")
     }
     
-    public struct MaterialYellow {
+    struct MaterialYellow {
         public static let primary = UIColor(hexString: "#FFEB3B")
         public static let i50     = UIColor(hexString: "#FFFDE7")
         public static let i100    = UIColor(hexString: "#FFF9C4")
@@ -271,7 +271,7 @@ public extension UIColor {
         public static let a700    = UIColor(hexString: "#FFD600")
     }
     
-    public struct MaterialAmber {
+    struct MaterialAmber {
         public static let primary = UIColor(hexString: "#FFC107")
         public static let i50     = UIColor(hexString: "#FFF8E1")
         public static let i100    = UIColor(hexString: "#FFECB3")
@@ -289,7 +289,7 @@ public extension UIColor {
         public static let a700    = UIColor(hexString: "#FFAB00")
     }
     
-    public struct MaterialOrange {
+    struct MaterialOrange {
         public static let primary = UIColor(hexString: "#FF9800")
         public static let i50     = UIColor(hexString: "#FFF3E0")
         public static let i100    = UIColor(hexString: "#FFE0B2")
@@ -307,7 +307,7 @@ public extension UIColor {
         public static let a700    = UIColor(hexString: "#FF6D00")
     }
     
-    public struct MaterialDeepOrange {
+    struct MaterialDeepOrange {
         public static let primary = UIColor(hexString: "#FF5722")
         public static let i50     = UIColor(hexString: "#FBE9E7")
         public static let i100    = UIColor(hexString: "#FFCCBC")
@@ -325,7 +325,7 @@ public extension UIColor {
         public static let a700    = UIColor(hexString: "#DD2C00")
     }
     
-    public struct MaterialBrown {
+    struct MaterialBrown {
         public static let primary = UIColor(hexString: "#795548")
         public static let i50     = UIColor(hexString: "#EFEBE9")
         public static let i100    = UIColor(hexString: "#D7CCC8")
@@ -339,7 +339,7 @@ public extension UIColor {
         public static let i900    = UIColor(hexString: "#3E2723")
     }
     
-    public struct MaterialGrey {
+    struct MaterialGrey {
         public static let primary = UIColor(hexString: "#9E9E9E")
         public static let i50     = UIColor(hexString: "#FAFAFA")
         public static let i100    = UIColor(hexString: "#F5F5F5")
@@ -353,7 +353,7 @@ public extension UIColor {
         public static let i900    = UIColor(hexString: "#212121")
     }
     
-    public struct MaterialBlueGrey {
+    struct MaterialBlueGrey {
         public static let primary = UIColor(hexString: "#607D8B")
         public static let i50     = UIColor(hexString: "#ECEFF1")
         public static let i100    = UIColor(hexString: "#CFD8DC")

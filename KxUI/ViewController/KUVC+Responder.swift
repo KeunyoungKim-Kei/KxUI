@@ -21,7 +21,7 @@
 //
 
 public extension KUCommonViewController {
-    public func findFirstResponder(in v: UIView? = nil) -> UIView? {
+    func findFirstResponder(in v: UIView? = nil) -> UIView? {
         if let targetView = v {
             for item in targetView.subviews {
                 if item.isFirstResponder {
@@ -49,7 +49,7 @@ public extension KUCommonViewController {
     
     
     
-    public func findFirstResponderAndResign(in v: UIView? = nil) {
+    func findFirstResponderAndResign(in v: UIView? = nil) {
         if let targetView = v {
             for item in targetView.subviews {
                 if item.isFirstResponder {

@@ -34,7 +34,7 @@ public extension String {
    }
 
     /// A Boolean value that indicates whether the receiver is hexadecimal color string
-    public var isHexColorString: Bool {
+    var isHexColorString: Bool {
         if !hasPrefix("#") || len < 4 || len > 9 {
             return false
         }
@@ -53,7 +53,7 @@ public extension String {
     
     
     /// The red component of the hexadecimal color string
-    public var redComponent: CGFloat? {
+    var redComponent: CGFloat? {
         guard isHexColorString else { return nil }
       
         switch len {
@@ -68,7 +68,7 @@ public extension String {
     
     
     /// The green component of the hexadecimal color string
-    public var greenComponent: CGFloat? {
+    var greenComponent: CGFloat? {
         guard isHexColorString else { return nil }
       
         switch len {
@@ -83,7 +83,7 @@ public extension String {
     
     
     /// The blue component of the hexadecimal color string
-    public var blueComponent: CGFloat? {
+    var blueComponent: CGFloat? {
         guard isHexColorString else { return nil }
         
         switch len {
@@ -98,7 +98,7 @@ public extension String {
     
     
     /// The alpha component of the hexadecimal color string
-    public var alphaComponent: CGFloat? {
+    var alphaComponent: CGFloat? {
         guard isHexColorString else { return nil }
         
         switch len {
@@ -113,7 +113,7 @@ public extension String {
     
     
     /// The receiver's UIColor representation
-    public var UIColorValue: UIColor? {
+    var UIColorValue: UIColor? {
         return parseHexColorString()
     }
     
@@ -127,7 +127,7 @@ public extension String {
     /// - RRGGBBAA
     ///
     /// - Returns: The UIColor object for the parsed string, or nil if there is an error of if receiver is not a valid hexadecimal color string
-    public func parseHexColorString() -> UIColor? {
+    func parseHexColorString() -> UIColor? {
         if let r = redComponent, let g = greenComponent, let b = blueComponent {
             let a = alphaComponent ?? 255
             

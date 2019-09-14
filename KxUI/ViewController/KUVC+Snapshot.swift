@@ -23,7 +23,7 @@
 public extension KUCommonViewController {
     
     /// A Snapshot taken from view controller's root view
-    public var viewSnapshot: UIImage? {
+    var viewSnapshot: UIImage? {
         UIGraphicsBeginImageContextWithOptions(view.bounds.size, true, 0)
         view.drawHierarchy(in: view.bounds, afterScreenUpdates: false)
         let image = UIGraphicsGetImageFromCurrentImageContext()
@@ -40,7 +40,7 @@ public extension KUCommonViewController {
     ///   - scale: The scale factor to apply to the bitmap. If you specify a value of 0.0, the scale factor is set to the scale factor of the device’s main screen. The default value is 0.0.
     ///   - afterScreenUpdates: A Boolean value that indicates whether the snapshot should be rendered after recent changes have been incorporated. Specify the value false if you want to render a snapshot in the view hierarchy’s current state, which might not include recent changes. The default value is false.
     /// - Returns: The image object representing snapshot, or nil if the method could not generate snapshot or invalid target view
-    public func generate(snapshotOf target: UIView?, opaque: Bool = true, scale: CGFloat = 0, afterScreenUpdates: Bool = false) -> UIImage? {
+    func generate(snapshotOf target: UIView?, opaque: Bool = true, scale: CGFloat = 0, afterScreenUpdates: Bool = false) -> UIImage? {
         guard let v = target else {
             return nil
         }

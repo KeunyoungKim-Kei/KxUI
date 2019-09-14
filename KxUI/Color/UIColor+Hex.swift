@@ -33,7 +33,7 @@ public extension UIColor {
      
      - Returns: An initialized color object. If *hexString* is not a valid hexadecimal color string, returns a color object whose grayscale value is 1.0 and whose alpha value is 1.0.
      */
-    public convenience init(hexString: String) {
+    convenience init(hexString: String) {
         var red: CGFloat    = 1.0
         var green: CGFloat  = 1.0
         var blue: CGFloat   = 1.0
@@ -47,11 +47,11 @@ public extension UIColor {
     }
 
     
-    public var rgbHexString: String {
+    var rgbHexString: String {
         return toHexString(includeAlpha: false)
     }
     
-    public var rgbaHexString: String {
+    var rgbaHexString: String {
         return toHexString(includeAlpha: true)
     }
     

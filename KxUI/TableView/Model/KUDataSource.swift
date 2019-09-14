@@ -48,7 +48,7 @@ public protocol TableViewDataSourceCompatible: DataSourceCompatible {
 }
 
 public extension Array {
-    public func validateBound(with index: Int) -> Bool {
+    func validateBound(with index: Int) -> Bool {
         return index >= 0 && index < self.count
     }
 }

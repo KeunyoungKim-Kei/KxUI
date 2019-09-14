@@ -154,7 +154,7 @@ import UIKit
     }
 
     @objc open func dismiss(animated: Bool = true) {
-        if let index = KUAnchoredPopupView.list.index(of: self) {
+        if let index = KUAnchoredPopupView.list.firstIndex(of: self) {
             UIView.animate(withDuration: animated ? 0.3 : 0.0, animations: { [weak self] in
                 self?.alpha = 0.0
             }) { [weak self] (finished) in

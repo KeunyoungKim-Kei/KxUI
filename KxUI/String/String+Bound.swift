@@ -25,7 +25,7 @@ import Foundation
 #if os(iOS) || os(tvOS)
     public extension String {
         
-        public func estimatedHeight(_ width: CGFloat, font: UIFont) -> CGFloat {
+        func estimatedHeight(_ width: CGFloat, font: UIFont) -> CGFloat {
             let s = NSString(string: self)
          #if swift(>=4.2)
          let attrs = [NSAttributedString.Key.font: font]
@@ -41,7 +41,7 @@ import Foundation
         
         
         
-        public func estimatedWidth(_ font: UIFont) -> CGFloat {
+        func estimatedWidth(_ font: UIFont) -> CGFloat {
             let s = NSString(string: self)
          #if swift(>=4.2)
          let attrs = [NSAttributedString.Key.font: font]
@@ -58,7 +58,7 @@ import Foundation
     
     public extension String {
         @available(OSX 10.11, *)
-        public func estimatedHeight(_ width: CGFloat, font: NSFont) -> CGFloat {
+        func estimatedHeight(_ width: CGFloat, font: NSFont) -> CGFloat {
             let s = NSString(string: self)
          #if swift(>=3.3)
             let attrs = [NSAttributedStringKey.font: font]
@@ -70,7 +70,7 @@ import Foundation
         }
         
         @available(OSX 10.11, *)
-        public func estimatedWidth(_ font: NSFont) -> CGFloat {
+        func estimatedWidth(_ font: NSFont) -> CGFloat {
             let s = NSString(string: self)
          #if swift(>=3.3)
             let attrs = [NSAttributedStringKey.font: font]

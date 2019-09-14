@@ -41,11 +41,10 @@ public typealias HeaderTapHandler = (HeaderPosition) -> ()
 public typealias CustomHeaderSetupHandler = (HeaderPosition, UIView) -> Set<HeaderPosition>
 
 public extension Notification.Name {
-    public static let KUHeaderLeftButtonTap   = Notification.Name(rawValue: "KUHeaderLeftButtonTapNotification")
-    public static let KUHeaderCenterButtonTap = Notification.Name(rawValue: "KUHeaderCenterButtonTapNotification")
-    public static let KUHeaderRightButtonTap  = Notification.Name(rawValue: "KUHeaderRightButtonTapNotification")
+    static let KUHeaderLeftButtonTap   = Notification.Name(rawValue: "KUHeaderLeftButtonTapNotification")
+    static let KUHeaderCenterButtonTap = Notification.Name(rawValue: "KUHeaderCenterButtonTapNotification")
+    static let KUHeaderRightButtonTap  = Notification.Name(rawValue: "KUHeaderRightButtonTapNotification")
 }
-
 
 @IBDesignable open class KUHeaderView: KUHeaderBaseView {
     ////////////////////////////////////////////////////////////////////////////////////////////////
